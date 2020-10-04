@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="Map" type="Node2D"]
+
+[node name="Spawn" type="Position2D" parent="."]
+position = Vector2( 467.359, 277.085 )
