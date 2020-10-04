@@ -10,7 +10,7 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("ui_accept"):
 				visible = !visible
 				rpc("visibility", visible)
-			
+
 remote func transform_data(data):
 	transform = data
 
@@ -21,4 +21,3 @@ func _on_network_peer_connected(id):
 		if is_network_master():
 			rpc("transform_data", transform)
 			rpc("visibility", visible)
-
