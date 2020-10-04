@@ -8,7 +8,9 @@ func _ready():
 func _physics_process(delta):
 	if is_network_master():
 		position.x += (-Input.get_action_strength("ui_left") + Input.get_action_strength("ui_right")) * 5
-		rpc_unreliable("transform_data", transform)
+		if position != Vector2(): # If we are moving the character send rpc call
+			rpc_unreliable("transform_data", transform)
+		
 		if Input.is_action_just_pressed("ui_accept"):
 			rpc("visibility", !visible)
 
