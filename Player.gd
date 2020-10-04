@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 func _ready():
 		get_tree().connect("network_peer_connected", self, "_on_network_peer_connected")
+		yield(get_tree(), "idle_frame") # Wait one frame before checking if we are the master of this node
+		$Status.visible = is_network_master() # If we are the master, make the Label node visible
 
 func _physics_process(delta):
 		if is_network_master():
