@@ -40,4 +40,3 @@ func _on_network_peer_connected(id):
 
 func _on_network_peer_disconnected(id):
 	get_tree().get_root().find_node(str(id), true, false).queue_free()
-
