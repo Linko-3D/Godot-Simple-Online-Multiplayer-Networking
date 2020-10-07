@@ -1,9 +1,6 @@
 extends Node
 
-var player = "res://Player.tscn"
-#var map = "res://Map.tscn"
-
-var map  = preload("res://Map.tscn").instance()
+var map = preload("res://Map.tscn").instance()
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_on_network_peer_connected")
@@ -31,11 +28,11 @@ func load_game():
 		spawn_player(get_tree().get_network_unique_id())
 
 func spawn_player(id):
-	var player_instance = load(player).instance()
+	var player = load("res://Player.tscn").instance()
 	var spawn = get_tree().get_root().find_node("Spawn", true, false)
-	spawn.add_child(player_instance)
-	player_instance.name = str(id)
-	player_instance.set_network_master(id)
+	spawn.add_child(player)
+	player.name = str(id)
+	player.set_network_master(id)
 
 func _on_network_peer_connected(id):
 	if id != 1: # 1 is the server, we don't want to spawn a player from it
