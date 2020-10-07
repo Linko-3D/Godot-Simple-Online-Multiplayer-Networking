@@ -22,10 +22,7 @@ func join_server():
 	peer.create_client("127.0.0.1", 4242)
 	get_tree().set_network_peer(peer)
 
-	# If server found sends the signal "_on_connected_to_server"
-
-func _on_connected_to_server():
-	load_game()
+	# If server found sends the signal "_on_connected_to_server" to load the game
 
 func load_game():
 	get_tree().get_root().add_child(map)
@@ -47,4 +44,5 @@ func _on_network_peer_connected(id):
 func _on_network_peer_disconnected(id):
 	get_tree().get_root().find_node(str(id), true, false).queue_free()
 
-
+func _on_connected_to_server():
+	load_game()
