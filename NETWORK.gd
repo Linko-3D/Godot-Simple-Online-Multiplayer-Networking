@@ -1,7 +1,9 @@
 extends Node
 
 var player = "res://Player.tscn"
-var map = "res://Map.tscn"
+#var map = "res://Map.tscn"
+
+var map  = preload("res://Map.tscn").instance()
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_on_network_peer_connected")
@@ -20,15 +22,19 @@ func join_server():
 	peer.create_client("127.0.0.1", 4242)
 	get_tree().set_network_peer(peer)
 
+	# If server found sends the signal "_on_connected_to_server"
+
+func _on_connected_to_server():
+	load_game()
+
 func load_game():
-	get_tree().change_scene(map)
+	get_tree().get_root().add_child(map)
+	get_tree().get_root().get_node("Lobby").queue_free()
 	if not get_tree().is_network_server():
-		yield(get_tree(), "idle_frame")
 		spawn_player(get_tree().get_network_unique_id())
 
 func spawn_player(id):
 	var player_instance = load(player).instance()
-	yield(get_tree(), "idle_frame")
 	var spawn = get_tree().get_root().find_node("Spawn", true, false)
 	spawn.add_child(player_instance)
 	player_instance.name = str(id)
@@ -41,5 +47,4 @@ func _on_network_peer_connected(id):
 func _on_network_peer_disconnected(id):
 	get_tree().get_root().find_node(str(id), true, false).queue_free()
 
-func _on_connected_to_server():
-	load_game()
+

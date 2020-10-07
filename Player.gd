@@ -11,7 +11,7 @@ func _ready():
 func _physics_process(delta):
 	direction.x = -Input.get_action_strength("ui_left") + Input.get_action_strength("ui_right")
 	direction.y = -Input.get_action_strength("ui_up") + Input.get_action_strength("ui_down")
-	direction.normalized()
+	direction = direction.normalized()
 	move_and_slide(direction * 500)
 	
 	if direction != Vector2(): # If we are moving the character sends rpc call
