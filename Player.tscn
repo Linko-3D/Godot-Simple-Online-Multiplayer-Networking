@@ -9,11 +9,19 @@ script = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 
-[node name="Status" type="Label" parent="."]
+[node name="Status" type="ColorRect" parent="."]
 margin_left = -32.0
 margin_top = -46.0
 margin_right = 32.0
 margin_bottom = -32.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatusText" type="Label" parent="Status"]
+margin_right = 64.0
+margin_bottom = 14.0
 text = "Master"
 align = 1
 valign = 1

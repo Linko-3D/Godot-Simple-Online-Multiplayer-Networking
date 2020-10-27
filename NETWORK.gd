@@ -26,6 +26,7 @@ func join_server():
 func load_game():
 	get_tree().get_root().add_child(map)
 	get_tree().get_root().get_node("Lobby").queue_free()
+
 	if not get_tree().is_network_server():
 		spawn_player(get_tree().get_network_unique_id())
 
