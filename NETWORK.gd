@@ -6,7 +6,7 @@ var lobby = preload("res://Lobby.tscn").instance()
 var map = preload("res://Map.tscn").instance()
 var servermenu = preload("res://Modules/ServerMenu.tscn").instance()
 
-var nameDisplayed = ""
+var player_name = ""
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_on_network_peer_connected")
@@ -25,7 +25,7 @@ func join_server(ip, get_name):
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(ip, 4242)
 	get_tree().set_network_peer(peer)
-	nameDisplayed = get_name
+	player_name = get_name
 
 	# If server found, sends the signal "_on_connected_to_server" to load the game
 

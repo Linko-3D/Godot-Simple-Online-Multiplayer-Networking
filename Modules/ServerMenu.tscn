@@ -17,3 +17,6 @@ anchor_right = 1.0
 margin_bottom = 14.0
 text = "Server Menu"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -9,6 +9,8 @@ func _ready():
 
 	set_physics_process(is_network_master())
 	$Controlled.visible = is_network_master()
+	if is_network_master():
+		rpc("share_name", NETWORK.player_name)
 
 func _physics_process(delta):
 	direction.x = -Input.get_action_strength("ui_left") + Input.get_action_strength("ui_right")
@@ -28,7 +30,11 @@ remote func transform_data(data):
 remotesync func visibility(data):
 	$Sprite.visible = data
 
+remotesync func share_name(data):
+	$Name.text = data
+
 func _on_network_peer_connected(id):
 	if is_network_master():
 		rpc("transform_data", transform)
 		rpc("visibility", $Sprite.visible)
+		rpc("share_name", NETWORK.player_name)
