@@ -17,29 +17,3 @@ __meta__ = {
 
 [node name="Spawn" type="Position2D" parent="."]
 position = Vector2( 512, 300 )
-
-[node name="Contrast" type="ColorRect" parent="."]
-anchor_right = 1.0
-margin_bottom = 14.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="."]
-anchor_right = 1.0
-margin_bottom = 14.0
-text = "Server"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Infos" type="Label" parent="."]
-visible = false
-margin_right = 309.0
-margin_bottom = 14.0
-text = "\"Arrows\" to move and \"Enter\" to toggle the visibility"
-__meta__ = {
-"_edit_use_anchors_": false
-}

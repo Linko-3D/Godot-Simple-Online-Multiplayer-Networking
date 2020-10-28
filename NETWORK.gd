@@ -1,3 +1,5 @@
+# Singleton
+
 extends Node
 
 var lobby = preload("res://Lobby.tscn").instance()
@@ -16,9 +18,9 @@ func create_server():
 
 	load_game()
 
-func join_server():
+func join_server(ip):
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_client("127.0.0.1", 4242)
+	peer.create_client(ip, 4242)
 	get_tree().set_network_peer(peer)
 
 	# If server found sends the signal "_on_connected_to_server" to load the game
