@@ -4,6 +4,9 @@ extends Node
 
 var lobby = preload("res://Lobby.tscn").instance()
 var map = preload("res://Map.tscn").instance()
+var servermenu = preload("res://Modules/ServerMenu.tscn").instance()
+
+var nameDisplayed = ""
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_on_network_peer_connected")
@@ -18,12 +21,13 @@ func create_server():
 
 	load_game()
 
-func join_server(ip):
+func join_server(ip, get_name):
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(ip, 4242)
 	get_tree().set_network_peer(peer)
+	nameDisplayed = get_name
 
-	# If server found sends the signal "_on_connected_to_server" to load the game
+	# If server found, sends the signal "_on_connected_to_server" to load the game
 
 func load_game():
 	get_tree().get_root().add_child(map)
@@ -31,6 +35,8 @@ func load_game():
 
 	if not get_tree().is_network_server():
 		spawn_player(get_tree().get_network_unique_id())
+	else:
+		get_tree().get_root().add_child(servermenu)
 
 func spawn_player(id):
 	var player = load("res://Player.tscn").instance()

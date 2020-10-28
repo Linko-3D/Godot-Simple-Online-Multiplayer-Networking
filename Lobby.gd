@@ -7,4 +7,4 @@ func _on_Host_pressed():
 	NETWORK.create_server()
 
 func _on_Join_pressed():
-	NETWORK.join_server($Menu/Connect/IP.text)
+	NETWORK.join_server($Menu/Connect/IP.text, $Menu/Name/NameSet.text)

@@ -7,7 +7,7 @@
 script = ExtResource( 2 )
 
 [node name="Controlled" type="Sprite" parent="."]
-modulate = Color( 1, 0, 0, 1 )
+modulate = Color( 0, 1, 0, 1 )
 scale = Vector2( 1.2, 1.2 )
 texture = ExtResource( 1 )
 

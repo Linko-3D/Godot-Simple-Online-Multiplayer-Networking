@@ -38,30 +38,30 @@ __meta__ = {
 }
 
 [node name="Host" type="Button" parent="Menu"]
-margin_right = 192.0
+margin_right = 241.0
 margin_bottom = 20.0
 text = "Host"
 
 [node name="ShowIP" type="Label" parent="Menu"]
 margin_top = 24.0
-margin_right = 192.0
+margin_right = 241.0
 margin_bottom = 38.0
 text = "My IP:"
 
 [node name="HSeparator" type="HSeparator" parent="Menu"]
 margin_top = 42.0
-margin_right = 192.0
+margin_right = 241.0
 margin_bottom = 46.0
 
 [node name="Join" type="Button" parent="Menu"]
 margin_top = 50.0
-margin_right = 192.0
+margin_right = 241.0
 margin_bottom = 70.0
 text = "Join"
 
 [node name="Connect" type="HBoxContainer" parent="Menu"]
 margin_top = 74.0
-margin_right = 192.0
+margin_right = 241.0
 margin_bottom = 98.0
 
 [node name="To" type="Label" parent="Menu/Connect"]
@@ -76,6 +76,24 @@ margin_right = 192.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 169, 0 )
 text = "127.0.0.1"
+
+[node name="Name" type="HBoxContainer" parent="Menu"]
+margin_top = 102.0
+margin_right = 241.0
+margin_bottom = 126.0
+
+[node name="Nickname" type="Label" parent="Menu/Name"]
+margin_top = 5.0
+margin_right = 68.0
+margin_bottom = 19.0
+text = "Nickname:"
+
+[node name="NameSet" type="LineEdit" parent="Menu/Name"]
+margin_left = 72.0
+margin_right = 241.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 169, 0 )
+text = "Anonymous"
 
 [node name="ErrorMessage" type="Label" parent="Menu"]
 visible = false

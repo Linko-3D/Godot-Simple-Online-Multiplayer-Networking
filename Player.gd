@@ -20,15 +20,15 @@ func _physics_process(delta):
 		rpc_unreliable("transform_data", transform)
 	
 	if Input.is_action_just_pressed("ui_accept"):
-		rpc("visibility", !visible)
+		rpc("visibility", !$Sprite.visible)
 
 remote func transform_data(data):
 	transform = data
 
 remotesync func visibility(data):
-	visible = data
+	$Sprite.visible = data
 
 func _on_network_peer_connected(id):
 	if is_network_master():
 		rpc("transform_data", transform)
-		rpc("visibility", visible)
+		rpc("visibility", $Sprite.visible)
