@@ -105,3 +105,5 @@ text = "Error: server not found!"
 align = 1
 [connection signal="pressed" from="Menu/Host" to="." method="_on_Host_pressed"]
 [connection signal="pressed" from="Menu/Join" to="." method="_on_Join_pressed"]
+[connection signal="text_entered" from="Menu/Connect/IP" to="." method="_text_entered"]
+[connection signal="text_entered" from="Menu/Name/NameSet" to="." method="_text_entered"]

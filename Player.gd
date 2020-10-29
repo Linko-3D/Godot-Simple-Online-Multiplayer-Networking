@@ -4,6 +4,7 @@ var direction = Vector2()
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_on_network_peer_connected")
+	get_tree().connect("network_peer_disconnected", self, "_on_network_peer_disconnected")
 
 	yield(get_tree(), "idle_frame") # Wait one frame before checking if we are the master of this node
 
@@ -11,6 +12,10 @@ func _ready():
 	$Controlled.visible = is_network_master()
 	if is_network_master():
 		rpc("share_name", NETWORK.player_name)
+		rpc_id(1, "update_player_list", NETWORK.player_name, true)
+
+remote func update_player_list(player, operation):
+	NETWORK.update_player_list(player, operation)
 
 func _physics_process(delta):
 	direction.x = -Input.get_action_strength("ui_left") + Input.get_action_strength("ui_right")
@@ -38,3 +43,7 @@ func _on_network_peer_connected(id):
 		rpc("transform_data", transform)
 		rpc("visibility", $Sprite.visible)
 		rpc("share_name", NETWORK.player_name)
+
+func _on_network_peer_disconnected(id):
+	if is_network_master():
+		rpc_id(1, "update_player_list", NETWORK.player_name, false)

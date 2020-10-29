@@ -8,6 +8,8 @@ var servermenu = preload("res://Modules/ServerMenu.tscn").instance()
 
 var player_name = ""
 
+var player_list = []
+
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_on_network_peer_connected")
 	get_tree().connect("network_peer_disconnected", self, "_on_network_peer_disconnected")
@@ -33,7 +35,7 @@ func load_game():
 	get_tree().get_root().add_child(map)
 	get_tree().get_root().get_node("Lobby").queue_free()
 
-	if not get_tree().is_network_server():
+	if not get_tree().is_network_server(): #If not the server spawn a player, otherwise display the server menu
 		spawn_player(get_tree().get_network_unique_id())
 	else:
 		get_tree().get_root().add_child(servermenu)
@@ -60,3 +62,9 @@ func _on_server_disconnected():
 	get_tree().get_root().add_child(lobby)
 	get_tree().get_root().get_node("Map").queue_free()
 	get_tree().set_network_peer(null)
+
+func update_player_list(player, add): # Server
+	if add:
+		player_list.append(player)
+	else:
+		player_list.remove(player)
