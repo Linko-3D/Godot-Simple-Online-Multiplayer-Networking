@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	$Menu/ShowIP.text = "My IP: " + IP.get_local_addresses()[3]
+	$Menu/ShowIP.text = "Local IP: " + IP.get_local_addresses()[3]
 
 func _on_Host_pressed():
 	NETWORK.create_server()

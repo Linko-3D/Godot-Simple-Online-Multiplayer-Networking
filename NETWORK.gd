@@ -8,8 +8,6 @@ var servermenu = preload("res://Modules/ServerMenu.tscn").instance()
 
 var player_name = ""
 
-var player_list = []
-
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_on_network_peer_connected")
 	get_tree().connect("network_peer_disconnected", self, "_on_network_peer_disconnected")
@@ -62,9 +60,3 @@ func _on_server_disconnected():
 	get_tree().get_root().add_child(lobby)
 	get_tree().get_root().get_node("Map").queue_free()
 	get_tree().set_network_peer(null)
-
-func update_player_list(player, add): # Server
-	if add:
-		player_list.append(player)
-	else:
-		player_list.remove(player)

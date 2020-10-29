@@ -15,5 +15,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spawn" type="Position2D" parent="."]
+[node name="Spawn" type="YSort" parent="."]
 position = Vector2( 512, 300 )

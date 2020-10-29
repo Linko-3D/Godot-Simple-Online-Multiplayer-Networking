@@ -1,18 +1,15 @@
 extends Control
 
-var previous_size = 0
-
 func _process(delta):
-	if previous_size != NETWORK.player_list.size():
-		for child in $ConnectedList.get_children():
-			child.queue_free()
-		for x in NETWORK.player_list:
-			display_player(x)
-		previous_size = NETWORK.player_list.size()
+	var spawn_node = get_tree().get_root().find_node("Spawn", true, false)
+	
+	for child in $ConnectedList.get_children():
+		child.queue_free()
 
-	print(NETWORK.player_list.size())
+	for child in spawn_node.get_children():
+		display_player(child.player_name)
 
-func display_player(x):
+func display_player(player_name):
 	var player_connected = Label.new()
-	player_connected.text = "- " + x
+	player_connected.text = "- " + player_name
 	$ConnectedList.add_child(player_connected)
