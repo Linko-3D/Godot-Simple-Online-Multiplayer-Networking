@@ -5,6 +5,7 @@ extends Node
 var lobby = preload("res://Lobby.tscn").instance()
 var map = preload("res://Map.tscn").instance()
 var servermenu = preload("res://Modules/ServerMenu.tscn").instance()
+var chatmenu = preload("res://Modules/Chat.tscn").instance()
 
 var player_name = ""
 
@@ -37,6 +38,8 @@ func load_game():
 		spawn_player(get_tree().get_network_unique_id())
 	else:
 		get_tree().get_root().add_child(servermenu)
+	
+	get_tree().get_root().add_child(chatmenu)
 
 func spawn_player(id):
 	var player = load("res://Player.tscn").instance()

@@ -28,17 +28,22 @@ __meta__ = {
 }
 
 [node name="ColorRect2" type="ColorRect" parent="."]
-margin_top = 14.0
-margin_right = 196.0
-margin_bottom = 278.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -100.0
+margin_right = 150.0
+margin_bottom = 100.0
 color = Color( 0, 0, 0, 0.196078 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ConnectedList" type="VBoxContainer" parent="."]
-margin_right = 11.0
-margin_bottom = 7.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -100.0
+margin_right = 150.0
+margin_bottom = 100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
