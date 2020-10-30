@@ -38,3 +38,12 @@ rect_min_size = Vector2( 500, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ChatBox" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -145.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

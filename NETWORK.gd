@@ -7,7 +7,7 @@ var map = preload("res://Map.tscn").instance()
 var servermenu = preload("res://Modules/ServerMenu.tscn").instance()
 var chatmenu = preload("res://Modules/Chat.tscn").instance()
 
-var player_name = ""
+var player_name = "Server"
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_on_network_peer_connected")
