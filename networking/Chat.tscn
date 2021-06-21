@@ -47,7 +47,7 @@ rect_min_size = Vector2( 470, 0 )
 max_length = 65
 
 [node name="MessagesFadeOutTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 4.0
 one_shot = true
 
 [connection signal="timeout" from="MessagesFadeOutTimer" to="." method="_on_MessagesFadeOutTimer_timeout"]
