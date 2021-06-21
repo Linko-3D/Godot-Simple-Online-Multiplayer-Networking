@@ -13,7 +13,7 @@ func _ready():
 	get_tree().connect("network_peer_connected", self, "_on_network_peer_connected")
 	get_tree().connect("network_peer_disconnected", self, "_on_network_peer_disconnected")
 	get_tree().connect("connected_to_server", self, "_on_connected_to_server")
-	
+
 func create_server(username_chosen):
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(4242, 32)

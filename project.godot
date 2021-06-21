@@ -22,10 +22,6 @@ config/icon="res://icon.png"
 
 Network="*res://Network.gd"
 
-[display]
-
-window/size/resizable=false
-
 [input]
 
 ui_accept={

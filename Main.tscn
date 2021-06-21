@@ -42,6 +42,7 @@ __meta__ = {
 [node name="Username" type="LineEdit" parent="Menu"]
 margin_right = 323.0
 margin_bottom = 24.0
+max_length = 15
 placeholder_text = "Username"
 
 [node name="Label2" type="Label" parent="Menu"]
