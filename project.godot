@@ -10,18 +10,17 @@ config_version=4
 
 _global_script_classes=[  ]
 _global_script_class_icons={
-
 }
 
 [application]
 
 config/name="Godot Simple Networking"
-run/main_scene="res://Lobby.tscn"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-NETWORK="*res://NETWORK.gd"
+Network="*res://Network.gd"
 
 [display]
 

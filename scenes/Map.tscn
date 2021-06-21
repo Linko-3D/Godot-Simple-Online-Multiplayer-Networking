@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="Map" type="YSort"]
+
+[node name="Spawners" type="Position2D" parent="."]
+
+[node name="Spawn" type="Position2D" parent="Spawners"]
+position = Vector2( 162.016, 148.112 )
+
+[node name="Spawn2" type="Position2D" parent="Spawners"]
+position = Vector2( 804.576, 364.818 )
