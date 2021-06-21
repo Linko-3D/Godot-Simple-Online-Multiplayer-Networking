@@ -8,9 +8,6 @@ var chat = load("res://networking/Chat.tscn").instance()
 var lobby = "res://Lobby.tscn"
 
 var spawn = null
-var spawno = null
-
-var client_connected = false
 
 func _ready():
 	get_tree().connect("network_peer_connected", self, "_on_network_peer_connected")
@@ -34,23 +31,21 @@ func join_server(to_ip, username_chosen):
 	
 	username = username_chosen
 	
-	# Executes _on_connected_to_server() to load the game
-	
-	yield(get_tree().create_timer(1.0), "timeout")
+	# If a server is detected call _on_connected_to_server() to load the game
 
 func load_game():
 	get_tree().change_scene(map)
 	
 	yield(get_tree().create_timer(0.01), "timeout")
 	
-	get_spawn()
+	get_spawn_location()
 	
 	if not get_tree().is_network_server():
 		spawn_player(get_tree().get_network_unique_id())
 	
 	get_tree().get_root().add_child(chat)
 
-func get_spawn():
+func get_spawn_location():
 	var spawner = get_tree().get_root().find_node("Spawners", true, false)
 	spawner.get_child( randi() % spawner.get_child_count() )
 	randomize()
@@ -59,7 +54,7 @@ func get_spawn():
 func spawn_player(id):
 	var player_instance = load(player).instance()
 	player_instance.name = str(id)
-	get_tree().get_root().add_child(player_instance)
+	get_node("/root/Map").add_child(player_instance)
 	player_instance.global_transform = spawn.global_transform
 	
 	player_instance.set_network_master(id)
@@ -79,5 +74,4 @@ func _on_network_peer_disconnected(id):
 		get_tree().get_root().find_node(str(id), true, false).queue_free()
 
 func _on_connected_to_server():
-	client_connected = true
 	load_game()
