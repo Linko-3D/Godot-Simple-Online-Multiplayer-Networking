@@ -6,7 +6,9 @@ func _ready():
 	$DisplayUsername.text = Network.username
 	get_tree().connect("network_peer_connected", self, "_on_network_peer_connected")
 	
-	yield(get_tree(), "idle_frame") # Wait one frame before checking if we are the master of this node
+	# Wait one frame before checking if we are the master of this node
+	# Otherwise it won't be defined yet
+	yield(get_tree(), "idle_frame")
 	
 	set_physics_process(is_network_master())
 	$Controlled.visible = is_network_master()
