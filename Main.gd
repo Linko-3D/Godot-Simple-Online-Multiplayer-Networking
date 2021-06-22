@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	$Menu/LocalIP.text = "IP: " + Network.get_IP()
+	$Menu/LocalIP.text = "Local IP: " + Network.get_IP()
 	$Menu/Connect/IP.placeholder_text = Network.get_IP()
 	$Menu/Error.hide()
 

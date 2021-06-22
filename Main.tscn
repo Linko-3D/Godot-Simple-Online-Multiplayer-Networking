@@ -63,7 +63,7 @@ text = "Host"
 margin_top = 70.0
 margin_right = 323.0
 margin_bottom = 84.0
-text = "IP address"
+text = "Local IP address"
 
 [node name="Label" type="Label" parent="Menu"]
 margin_top = 88.0

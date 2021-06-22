@@ -2,6 +2,7 @@ extends Spatial
 
 var username = ""
 
+var main = "res://Main.tscn"
 var map = "res://scenes/Map.tscn"
 var player = "res://player/Player.tscn"
 var chat = load("res://networking/Chat.tscn").instance()
@@ -13,6 +14,7 @@ func _ready():
 	get_tree().connect("network_peer_connected", self, "_on_network_peer_connected")
 	get_tree().connect("network_peer_disconnected", self, "_on_network_peer_disconnected")
 	get_tree().connect("connected_to_server", self, "_on_connected_to_server")
+	get_tree().connect("server_disconnected", self, "_on_server_disconnected")
 
 func create_server(username_chosen):
 	var peer = NetworkedMultiplayerENet.new()
@@ -75,3 +77,8 @@ func _on_network_peer_disconnected(id):
 
 func _on_connected_to_server():
 	load_game()
+
+func _on_server_disconnected():
+	get_tree().change_scene(main)
+	get_node("/root/Chat").queue_free()
+	get_tree().set_network_peer(null)

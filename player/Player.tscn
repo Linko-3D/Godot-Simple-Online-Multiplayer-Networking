@@ -15,7 +15,7 @@ margin_left = -35.0
 margin_top = -35.0
 margin_right = 35.0
 margin_bottom = 35.0
-color = Color( 0.498039, 1, 0.498039, 0.392157 )
+color = Color( 0.5, 1, 0.25, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -28,7 +28,7 @@ margin_left = -35.0
 margin_top = -50.0
 margin_right = 100.0
 margin_bottom = -36.0
-text = "Anonymouswwww"
+text = "Anonymous"
 __meta__ = {
 "_edit_use_anchors_": false
 }
