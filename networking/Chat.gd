@@ -18,6 +18,8 @@ func _ready():
 	$Message.hide()
 	update_position()
 	
+	# Wait one frame before checking if we are the master of this node
+	# Otherwise it won't be defined yet
 	yield(get_tree(), "idle_frame")
 	
 	if get_tree().is_network_server():

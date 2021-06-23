@@ -20,7 +20,6 @@ func _on_network_peer_connected(id):
 		rpc("share_name", $DisplayUsername.text)
 
 remotesync func share_name(data):
-	yield(get_tree(), "idle_frame")
 	$DisplayUsername.text = data
 
 remotesync func position(data):
