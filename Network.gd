@@ -33,7 +33,7 @@ func join_server(to_ip, username_chosen):
 	
 	username = username_chosen
 	
-	# If a server is detected call _on_connected_to_server() to load the game
+	# If a server is detected calls _on_connected_to_server() to load the game
 
 func load_game():
 	get_tree().change_scene(map)
@@ -42,6 +42,7 @@ func load_game():
 	
 	get_spawn_location()
 	
+	# Only the clients spawn a player
 	if not get_tree().is_network_server():
 		spawn_player(get_tree().get_network_unique_id())
 	
@@ -49,7 +50,6 @@ func load_game():
 
 func get_spawn_location():
 	var spawner = get_tree().get_root().find_node("Spawners", true, false)
-	spawner.get_child( randi() % spawner.get_child_count() )
 	randomize()
 	spawn = spawner.get_child( randi() % spawner.get_child_count() )
 
@@ -59,6 +59,7 @@ func spawn_player(id):
 	get_node("/root/Map").add_child(player_instance)
 	player_instance.global_transform = spawn.global_transform
 	
+	# Only the client that own the player can control it
 	player_instance.set_network_master(id)
 
 func get_IP():
