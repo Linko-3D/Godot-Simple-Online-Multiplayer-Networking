@@ -1,110 +1,171 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://drffjlsqb5lod"]
 
-[ext_resource path="res://Main.gd" type="Script" id=2]
+[ext_resource type="Script" path="res://main.gd" id="1_djg2a"]
 
-[node name="Main" type="Control"]
+[node name="Main" type="Node"]
+script = ExtResource("1_djg2a")
+
+[node name="SpawnPosition" type="Node2D" parent="."]
+unique_name_in_owner = true
+y_sort_enabled = true
+position = Vector2(350, 200)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 1.05945
-margin_bottom = 1.05945
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="ChatBox" type="PanelContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -203.0
+offset_right = 350.0
+offset_bottom = 227.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/ChatBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="DisplayedMessage" type="VBoxContainer" parent="Control/ChatBox/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SendMessage" type="PanelContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -207.0
+offset_top = -41.0
+offset_right = 207.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/SendMessage"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/SendMessage/MarginContainer"]
+layout_mode = 2
+
+[node name="Info" type="Label" parent="Control/SendMessage/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Say : "
+
+[node name="TypedMessage" type="LineEdit" parent="Control/SendMessage/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+max_length = 35
+
+[node name="Scoreboard" type="PanelContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -178.0
-margin_top = -101.5
-margin_right = 178.0
-margin_bottom = 101.5
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = -258.0
+offset_top = -128.0
+offset_right = 258.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Menu" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="Control/Scoreboard"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Scoreboard/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Scoreboard/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Scoreboard/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Players:"
+
+[node name="PlayersConnectedList" type="VBoxContainer" parent="Control/Scoreboard/MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Menu" type="PanelContainer" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -161.5
-margin_top = -86.0
-margin_right = 161.5
-margin_bottom = 86.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = -153.5
+offset_top = -86.0
+offset_right = 153.5
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Username" type="LineEdit" parent="Menu"]
-margin_right = 323.0
-margin_bottom = 24.0
-max_length = 15
-placeholder_text = "Username"
+[node name="MarginContainer" type="MarginContainer" parent="Control/Menu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
-[node name="Label2" type="Label" parent="Menu"]
-margin_top = 28.0
-margin_right = 323.0
-margin_bottom = 42.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
 
-[node name="Host" type="Button" parent="Menu"]
-margin_top = 46.0
-margin_right = 323.0
-margin_bottom = 66.0
+[node name="HostButton" type="Button" parent="Control/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
 text = "Host"
 
-[node name="LocalIP" type="Label" parent="Menu"]
-margin_top = 70.0
-margin_right = 323.0
-margin_bottom = 84.0
-text = "Local IP address"
+[node name="HSeparator" type="HSeparator" parent="Control/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
 
-[node name="Label" type="Label" parent="Menu"]
-margin_top = 88.0
-margin_right = 323.0
-margin_bottom = 102.0
+[node name="Username" type="LineEdit" parent="Control/Menu/MarginContainer/VBoxContainer" groups=["player_name"]]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Username"
+max_length = 20
 
-[node name="Join" type="Button" parent="Menu"]
-margin_top = 106.0
-margin_right = 323.0
-margin_bottom = 126.0
-text = "Join"
+[node name="JoinButton" type="Button" parent="Control/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join
+"
 
-[node name="Connect" type="HBoxContainer" parent="Menu"]
-margin_top = 130.0
-margin_right = 323.0
-margin_bottom = 154.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://player.tscn")
+spawn_path = NodePath("../SpawnPosition")
 
-[node name="To" type="Label" parent="Menu/Connect"]
-margin_top = 5.0
-margin_right = 19.0
-margin_bottom = 19.0
-text = "To:"
+[node name="ChatBoxDisapearsTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
 
-[node name="IP" type="LineEdit" parent="Menu/Connect"]
-margin_left = 23.0
-margin_right = 323.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 300, 0 )
-placeholder_text = "127.0.0.1"
-
-[node name="Error" type="Label" parent="Menu"]
-margin_top = 158.0
-margin_right = 323.0
-margin_bottom = 172.0
-custom_colors/font_color = Color( 0.8, 0.2, 0.2, 1 )
-text = "Error: cannot connect to server"
-
-[connection signal="text_entered" from="Menu/Username" to="." method="_on_text_entered"]
-[connection signal="pressed" from="Menu/Host" to="." method="_on_Host_pressed"]
-[connection signal="pressed" from="Menu/Join" to="." method="_on_Join_pressed"]
-[connection signal="text_entered" from="Menu/Connect/IP" to="." method="_on_text_entered"]
+[connection signal="pressed" from="Control/Menu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="text_submitted" from="Control/Menu/MarginContainer/VBoxContainer/Username" to="." method="_on_username_text_submitted"]
+[connection signal="pressed" from="Control/Menu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="timeout" from="ChatBoxDisapearsTimer" to="." method="_on_chat_box_disapears_timer_timeout"]

@@ -1,10 +1,6 @@
 # Godot Simple Networking
 
 A simple networking base template you can use in your Godot project.
-It allows to connect to a local server, spawn players from different spawn locations, update the position of each player and share their username and it has a simple chat system that also displays who has connected.
+It allows to connect to a local server by setting his IP address, the client spawn a player on the spawn node, the position of each player is updated and share their username is displayed on top. It has a simple chat system that also displays who has connected you can use it by pressing Enter. By holding Tab you can display the connected players.
 
-Every script is minimalist to allow you to understand easily how they work and to improve them.
-
-In the Map scene add a Spawners node and one or more Spawn node as a child to set different locations. Network.gd will randomly pick one of the spawn.
-
-YouTube video: https://youtu.be/cp9YBU-iFBs
+It has a single script and scene for the networking, chatting system and to display the connected players. You just have to instance your map and set the player scene in the script and in the MultiplayerSpawner. You must also set a path to the SpawnPosition of the MultiplayerSpawner.

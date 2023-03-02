@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://5w7ik85j8b35"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_bh08c"]
+[ext_resource type="Texture2D" uid="uid://bgv65sge8jan3" path="res://icon.svg" id="1_pp0a8"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_m0hyt"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("PlayerName:text")
+properties/1/spawn = true
+properties/1/sync = true
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_bh08c")
+
+[node name="PlayerName" type="Label" parent="."]
+offset_left = -64.0
+offset_top = -95.0
+offset_right = 64.0
+offset_bottom = -69.0
+text = "Player"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Authority" type="ColorRect" parent="."]
+modulate = Color(0, 1, 0, 0.5)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -68.0
+offset_right = 68.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pp0a8")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_m0hyt")
