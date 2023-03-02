@@ -1,6 +1,7 @@
 extends Node
 
 var player = preload("res://player.tscn")
+var map = preload("res://map.tscn")
 
 var peer = ENetMultiplayerPeer.new()
 
@@ -104,7 +105,7 @@ func _on_host_button_pressed():
 	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
 
-	%Menu.hide()
+	load_game()
 
 # Client
 
@@ -112,11 +113,12 @@ func _on_join_button_pressed():
 	peer.create_client("localhost", 9999)
 	multiplayer.multiplayer_peer = peer
 
-	%Menu.hide()
 	if %Username.text == "":
 		%Username.text = "Player"
 
 	multiplayer.server_disconnected.connect(server_offline)
+
+	load_game()
 
 func add_player(id):
 	var player_instance = player.instantiate()
@@ -124,6 +126,11 @@ func add_player(id):
 	%SpawnPosition.add_child(player_instance)
 
 	send_message.rpc(str(id), " has joined the game", false)
+
+func load_game():
+	%Menu.hide()
+	var map_instance = map.instantiate()
+	%MapInstance.add_child(map_instance)
 
 func remove_player(id):
 	var player = %SpawnPosition.get_node_or_null(str(id))
@@ -133,6 +140,7 @@ func remove_player(id):
 
 func server_offline():
 	%Menu.show()
+	%MapInstance.get_child(0).queue_free()
 
 func _on_username_text_submitted(new_text):
 	_on_join_button_pressed()

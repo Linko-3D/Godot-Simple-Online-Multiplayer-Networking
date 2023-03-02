@@ -5,6 +5,9 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_djg2a")
 
+[node name="MapInstance" type="Node" parent="."]
+unique_name_in_owner = true
+
 [node name="SpawnPosition" type="Node2D" parent="."]
 unique_name_in_owner = true
 y_sort_enabled = true
