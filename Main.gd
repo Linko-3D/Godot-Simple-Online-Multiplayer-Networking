@@ -89,6 +89,11 @@ func display_players_connected():
 		var HBox = HBoxContainer.new()
 		player_connected_list.add_child(HBox)
 
+		if multiplayer.is_server():
+			var button = Button.new()
+			button.text = "KICK"
+			HBox.add_child(button)
+
 		var player = Label.new()
 		player.text = str(peer.name)
 		HBox.add_child(player)
