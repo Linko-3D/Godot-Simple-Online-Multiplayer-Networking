@@ -51,9 +51,8 @@ func _input(event):
 @rpc("call_local", "any_peer")
 func send_message(player_name, message, is_server):
 	var HBox = HBoxContainer.new()
-	var displayed_message_node = %DisplayedMessage
 
-	displayed_message_node.add_child(HBox)
+	%DisplayedMessage.add_child(HBox)
 
 	# Display the name of the player sending the message in red
 	var label_player_name = Label.new()
@@ -70,8 +69,8 @@ func send_message(player_name, message, is_server):
 	HBox.add_child(label_message)
 
 	# Remove the oldest message received if there are more than 7 displayed
-	if displayed_message_node.get_child_count() > 7:
-		displayed_message_node.get_child(0). queue_free()
+	if %DisplayedMessage.get_child_count() > 7:
+		%DisplayedMessage.get_child(0). queue_free()
 
 	%ChatBox.show()
 	%ChatBoxDisapearsTimer.start()
