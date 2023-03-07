@@ -59,7 +59,7 @@ func send_message(player_name, message, is_server):
 	if is_server:
 		player_name = "ADMIN"
 	label_player_name.text = player_name
-	label_player_name.modulate = Color(1, 0, 0)
+	label_player_name.modulate = Color.RED
 
 	# Send the message
 	var label_message = Label.new()
@@ -78,16 +78,14 @@ func send_message(player_name, message, is_server):
 # Function to display players connected, it refreshes each time it is called
 
 func display_players_connected():
-	var player_connected_list = %PlayersConnectedList
-
 	# Clear the previous list
-	for label in player_connected_list.get_children():
+	for label in %PlayersConnectedList.get_children():
 		label.queue_free()
 
 	# Create the list of connected players
 	for peer in %SpawnPosition.get_children():
 		var HBox = HBoxContainer.new()
-		player_connected_list.add_child(HBox)
+		%PlayersConnectedList.add_child(HBox)
 
 		if multiplayer.is_server():
 			var button = Button.new()
