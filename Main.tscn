@@ -78,6 +78,54 @@ custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 max_length = 35
 
+[node name="Lobby" type="PanelContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -91.0
+offset_right = 150.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Lobby"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Lobby/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SpawnTeamRedButton" type="Button" parent="Control/Lobby/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "RED team"
+
+[node name="SpawnTeamBlueButton" type="Button" parent="Control/Lobby/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "BLUE team"
+
+[node name="HSeparator" type="HSeparator" parent="Control/Lobby/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SpectateButton" type="Button" parent="Control/Lobby/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Spectate"
+
+[node name="HSeparator2" type="HSeparator" parent="Control/Lobby/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MenuButton" type="Button" parent="Control/Lobby/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Menu"
+
 [node name="Scoreboard" type="PanelContainer" parent="Control"]
 unique_name_in_owner = true
 layout_mode = 1
@@ -122,10 +170,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -153.5
-offset_top = -86.0
-offset_right = 153.5
-offset_bottom = 86.0
+offset_left = -150.0
+offset_top = -118.5
+offset_right = 150.0
+offset_bottom = 118.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -159,6 +207,56 @@ layout_mode = 2
 text = "Join
 "
 
+[node name="HSeparator2" type="HSeparator" parent="Control/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="Control/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit game"
+
+[node name="QuitConfirmation" type="PanelContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/QuitConfirmation"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/QuitConfirmation/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/QuitConfirmation/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/QuitConfirmation/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Are you sure you want to quit?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/QuitConfirmation/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="YesButton" type="Button" parent="Control/QuitConfirmation/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Yes"
+
+[node name="Label" type="Label" parent="Control/QuitConfirmation/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "     "
+
+[node name="NoButton" type="Button" parent="Control/QuitConfirmation/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "No"
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player.tscn")
 spawn_path = NodePath("../SpawnPosition")
@@ -168,7 +266,12 @@ unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
 
+[connection signal="pressed" from="Control/Lobby/MarginContainer/VBoxContainer/SpawnTeamRedButton" to="." method="_on_spawn_team_red_button_pressed"]
+[connection signal="pressed" from="Control/Lobby/MarginContainer/VBoxContainer/SpawnTeamBlueButton" to="." method="_on_spawn_team_blue_button_pressed"]
 [connection signal="pressed" from="Control/Menu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="text_submitted" from="Control/Menu/MarginContainer/VBoxContainer/Username" to="." method="_on_username_text_submitted"]
 [connection signal="pressed" from="Control/Menu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="button_down" from="Control/Menu/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_button_down"]
+[connection signal="pressed" from="Control/QuitConfirmation/MarginContainer/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="Control/QuitConfirmation/MarginContainer/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
 [connection signal="timeout" from="ChatBoxDisapearsTimer" to="." method="_on_chat_box_disapears_timer_timeout"]

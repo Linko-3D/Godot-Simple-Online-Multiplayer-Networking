@@ -13,6 +13,8 @@ func _ready():
 	%SendMessage.hide()
 	%ChatBox.hide()
 	%Scoreboard.hide()
+	$Control/Lobby.hide()
+	$Control/QuitConfirmation.hide()
 
 # Hold the Tab key to display connected players and press Enter to send a message
 
@@ -104,7 +106,6 @@ func _on_host_button_pressed():
 	peer.create_server(9999)
 	multiplayer.multiplayer_peer = peer
 
-	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
 
 	load_game()
@@ -122,9 +123,11 @@ func _on_join_button_pressed():
 
 	load_game()
 
-func add_player(id):
+@rpc("any_peer")
+func add_player(id, team):
 	var player_instance = player.instantiate()
 	player_instance.name = str(id)
+	player_instance.team = team
 	%SpawnPosition.add_child(player_instance)
 
 	send_message.rpc(str(id), " has joined the game", false)
@@ -133,6 +136,8 @@ func load_game():
 	%Menu.hide()
 	var map_instance = map.instantiate()
 	%MapInstance.add_child(map_instance)
+	
+	$Control/Lobby.visible = !multiplayer.is_server()
 
 func remove_player(id):
 	var player = %SpawnPosition.get_node_or_null(str(id))
@@ -149,3 +154,20 @@ func _on_username_text_submitted(new_text):
 
 func _on_chat_box_disapears_timer_timeout():
 	%ChatBox.hide()
+
+func _on_quit_button_button_down():
+	$Control/QuitConfirmation.show()
+
+func _on_spawn_team_red_button_pressed():
+	add_player.rpc_id(1, multiplayer.get_unique_id(), "red")
+	$Control/Lobby.hide()
+
+func _on_spawn_team_blue_button_pressed():
+	add_player.rpc_id(1, multiplayer.get_unique_id(), "blue")
+	$Control/Lobby.hide()
+
+func _on_yes_button_pressed():
+	get_tree().quit()
+
+func _on_no_button_pressed():
+	$Control/QuitConfirmation.hide()
