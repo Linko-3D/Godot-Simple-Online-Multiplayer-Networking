@@ -7,7 +7,11 @@ var peer = ENetMultiplayerPeer.new()
 
 var enter_key_pressed = false
 
+func _process(delta):
+	display_players_connected(%LobbyConnectedPlayers)
+
 func _ready():
+	$Control/Menu.show()
 	%SendMessage.position.y = get_viewport().size.y - (get_viewport().size.y / 6)
 	%ChatBox.position.y = get_viewport().size.y - (get_viewport().size.y / 3) - 15
 	%SendMessage.hide()
@@ -22,7 +26,7 @@ func _input(event):
 	if %Menu.visible: return # If the starting menu is not visible it means we are in the game
 
 	if Input.is_key_pressed(KEY_TAB):
-		display_players_connected()
+		display_players_connected(%PlayersConnectedList)
 		%Scoreboard.show()
 	else:
 		%Scoreboard.hide()
@@ -79,15 +83,15 @@ func send_message(player_name, message, is_server):
 
 # Function to display players connected, it refreshes each time it is called
 
-func display_players_connected():
+func display_players_connected(node):
 	# Clear the previous list
-	for label in %PlayersConnectedList.get_children():
+	for label in node.get_children():
 		label.queue_free()
 
 	# Create the list of connected players
 	for peer in %SpawnPosition.get_children():
 		var HBox = HBoxContainer.new()
-		%PlayersConnectedList.add_child(HBox)
+		node.add_child(HBox)
 
 		if multiplayer.is_server():
 			var button = Button.new()
@@ -146,8 +150,7 @@ func remove_player(id):
 	send_message.rpc(str(id), " left the game", false)
 
 func server_offline():
-	%Menu.show()
-	%MapInstance.get_child(0).queue_free()
+	quit_game()
 
 func _on_username_text_submitted(new_text):
 	_on_join_button_pressed()
@@ -171,3 +174,14 @@ func _on_yes_button_pressed():
 
 func _on_no_button_pressed():
 	$Control/QuitConfirmation.hide()
+
+func quit_game():
+	%Lobby.hide()
+	%Menu.show()
+	%ChatBox.hide()
+	%SendMessage.hide()
+	%TypedMessage.text = ""
+	%MapInstance.get_child(0).queue_free()
+
+func _on_menu_button_pressed():
+	quit_game()

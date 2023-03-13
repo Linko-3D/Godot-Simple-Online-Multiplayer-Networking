@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var team = "red"
 
-func _enter_tree():
+func _ready():
 	set_multiplayer_authority(str(name).to_int())
 
 	$Authority.visible = is_multiplayer_authority()

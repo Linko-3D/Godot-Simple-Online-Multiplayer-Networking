@@ -79,7 +79,7 @@ layout_mode = 2
 max_length = 35
 
 [node name="Lobby" type="PanelContainer" parent="Control"]
-visible = false
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -100,34 +100,52 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Lobby/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Lobby/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Lobby/MarginContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="SpawnTeamRedButton" type="Button" parent="Control/Lobby/MarginContainer/VBoxContainer"]
+[node name="SpawnTeamRedButton" type="Button" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "RED team"
 
-[node name="SpawnTeamBlueButton" type="Button" parent="Control/Lobby/MarginContainer/VBoxContainer"]
+[node name="SpawnTeamBlueButton" type="Button" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "BLUE team"
 
-[node name="HSeparator" type="HSeparator" parent="Control/Lobby/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="SpectateButton" type="Button" parent="Control/Lobby/MarginContainer/VBoxContainer"]
+[node name="SpectateButton" type="Button" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Spectate"
 
-[node name="HSeparator2" type="HSeparator" parent="Control/Lobby/MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="MenuButton" type="Button" parent="Control/Lobby/MarginContainer/VBoxContainer"]
+[node name="MenuButton" type="Button" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Menu"
+text = "< Main menu"
+
+[node name="VSeparator" type="VSeparator" parent="Control/Lobby/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/Lobby/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Connected:"
+
+[node name="LobbyConnectedPlayers" type="VBoxContainer" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="Scoreboard" type="PanelContainer" parent="Control"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -164,6 +182,7 @@ layout_mode = 2
 
 [node name="Menu" type="PanelContainer" parent="Control"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -266,8 +285,9 @@ unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
 
-[connection signal="pressed" from="Control/Lobby/MarginContainer/VBoxContainer/SpawnTeamRedButton" to="." method="_on_spawn_team_red_button_pressed"]
-[connection signal="pressed" from="Control/Lobby/MarginContainer/VBoxContainer/SpawnTeamBlueButton" to="." method="_on_spawn_team_blue_button_pressed"]
+[connection signal="pressed" from="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer/SpawnTeamRedButton" to="." method="_on_spawn_team_red_button_pressed"]
+[connection signal="pressed" from="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer/SpawnTeamBlueButton" to="." method="_on_spawn_team_blue_button_pressed"]
+[connection signal="pressed" from="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Control/Menu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="text_submitted" from="Control/Menu/MarginContainer/VBoxContainer/Username" to="." method="_on_username_text_submitted"]
 [connection signal="pressed" from="Control/Menu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
