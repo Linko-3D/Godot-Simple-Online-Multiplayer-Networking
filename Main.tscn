@@ -107,13 +107,9 @@ layout_mode = 2
 layout_mode = 2
 alignment = 1
 
-[node name="SpawnTeamRedButton" type="Button" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="EnterGameButton" type="Button" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "RED team"
-
-[node name="SpawnTeamBlueButton" type="Button" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "BLUE team"
+text = "Enter game"
 
 [node name="HSeparator" type="HSeparator" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -285,8 +281,7 @@ unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
 
-[connection signal="pressed" from="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer/SpawnTeamRedButton" to="." method="_on_spawn_team_red_button_pressed"]
-[connection signal="pressed" from="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer/SpawnTeamBlueButton" to="." method="_on_spawn_team_blue_button_pressed"]
+[connection signal="pressed" from="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer/EnterGameButton" to="." method="_on_enter_game_button_pressed"]
 [connection signal="pressed" from="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Control/Menu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="text_submitted" from="Control/Menu/MarginContainer/VBoxContainer/Username" to="." method="_on_username_text_submitted"]

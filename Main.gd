@@ -65,7 +65,7 @@ func send_message(player_name, message, is_server):
 	if is_server:
 		player_name = "ADMIN"
 	label_player_name.text = player_name
-	label_player_name.modulate = Color.RED
+	label_player_name.modulate = Color(0.45, 0.73, 0.93)
 
 	# Send the message
 	var label_message = Label.new()
@@ -107,7 +107,7 @@ func display_players_connected(node):
 # Server
 
 func _on_host_button_pressed():
-	peer.create_server(9999)
+	peer.create_server(7777)
 	multiplayer.multiplayer_peer = peer
 
 	multiplayer.peer_disconnected.connect(remove_player)
@@ -117,7 +117,7 @@ func _on_host_button_pressed():
 # Client
 
 func _on_join_button_pressed():
-	peer.create_client("localhost", 9999)
+	peer.create_client("localhost", 7777)
 	multiplayer.multiplayer_peer = peer
 
 	if %Username.text == "":
@@ -128,10 +128,9 @@ func _on_join_button_pressed():
 	load_game()
 
 @rpc("any_peer")
-func add_player(id, team):
+func add_player(id):
 	var player_instance = player.instantiate()
 	player_instance.name = str(id)
-	player_instance.team = team
 	%SpawnPosition.add_child(player_instance)
 
 	send_message.rpc(str(id), " has joined the game", false)
@@ -161,14 +160,6 @@ func _on_chat_box_disapears_timer_timeout():
 func _on_quit_button_button_down():
 	$Control/QuitConfirmation.show()
 
-func _on_spawn_team_red_button_pressed():
-	add_player.rpc_id(1, multiplayer.get_unique_id(), "red")
-	$Control/Lobby.hide()
-
-func _on_spawn_team_blue_button_pressed():
-	add_player.rpc_id(1, multiplayer.get_unique_id(), "blue")
-	$Control/Lobby.hide()
-
 func _on_yes_button_pressed():
 	get_tree().quit()
 
@@ -185,3 +176,8 @@ func quit_game():
 
 func _on_menu_button_pressed():
 	quit_game()
+
+
+func _on_enter_game_button_pressed():
+	add_player.rpc_id(1, multiplayer.get_unique_id())
+	$Control/Lobby.hide()
