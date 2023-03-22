@@ -15,6 +15,7 @@ properties/1/sync = true
 script = ExtResource("1_bh08c")
 
 [node name="PlayerName" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
 offset_left = -64.0
 offset_top = -95.0
 offset_right = 64.0
@@ -35,7 +36,7 @@ offset_right = 68.0
 offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.454902, 0.729412, 0.92549, 1)
+color = Color(0.15, 0.36, 0.75, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_pp0a8")

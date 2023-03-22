@@ -14,7 +14,7 @@ func _ready():
 #		$Sprite2D.modulate = Color.CYAN
 
 	$PlayerName.text = get_tree().get_first_node_in_group("player_name").text
-	$PlayerName.modulate = Color(0.45, 0.73, 0.93)
+	$PlayerName.modulate = Color(0.1, 0.25, 0.52)
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return

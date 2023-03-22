@@ -65,7 +65,7 @@ func send_message(player_name, message, is_server):
 	if is_server:
 		player_name = "ADMIN"
 	label_player_name.text = player_name
-	label_player_name.modulate = Color(0.45, 0.73, 0.93)
+	label_player_name.modulate = Color(0.58, 0.64, 0.75)
 
 	# Send the message
 	var label_message = Label.new()
@@ -107,7 +107,7 @@ func display_players_connected(node):
 # Server
 
 func _on_host_button_pressed():
-	peer.create_server(7777)
+	peer.create_server(9000)
 	multiplayer.multiplayer_peer = peer
 
 	multiplayer.peer_disconnected.connect(remove_player)
@@ -117,7 +117,7 @@ func _on_host_button_pressed():
 # Client
 
 func _on_join_button_pressed():
-	peer.create_client("localhost", 7777)
+	peer.create_client("localhost", 9000)
 	multiplayer.multiplayer_peer = peer
 
 	if %Username.text == "":
