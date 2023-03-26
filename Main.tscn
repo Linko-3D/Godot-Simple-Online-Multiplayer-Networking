@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://drffjlsqb5lod"]
+[gd_scene load_steps=3 format=3 uid="uid://drffjlsqb5lod"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_djg2a"]
+[ext_resource type="Texture2D" uid="uid://bgv65sge8jan3" path="res://icon.svg" id="2_mqf12"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_djg2a")
@@ -72,7 +73,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Say : "
 
-[node name="TypedMessage" type="LineEdit" parent="Control/SendMessage/MarginContainer/HBoxContainer"]
+[node name="MessageInput" type="LineEdit" parent="Control/SendMessage/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
@@ -80,6 +81,7 @@ max_length = 35
 
 [node name="Lobby" type="PanelContainer" parent="Control"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -178,7 +180,6 @@ layout_mode = 2
 
 [node name="Menu" type="PanelContainer" parent="Control"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -216,6 +217,18 @@ unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "Username"
 max_length = 20
+
+[node name="MenuButton" type="MenuButton" parent="Control/Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Map"
+item_count = 2
+popup/item_0/text = "Map 1"
+popup/item_0/icon = ExtResource("2_mqf12")
+popup/item_0/id = 0
+popup/item_1/text = "Map 2"
+popup/item_1/icon = ExtResource("2_mqf12")
+popup/item_1/checked = true
+popup/item_1/id = 1
 
 [node name="JoinButton" type="Button" parent="Control/Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2

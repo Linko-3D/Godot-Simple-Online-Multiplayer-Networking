@@ -37,9 +37,9 @@ func _input(event):
 			%SendMessage.visible = !%SendMessage.visible
 
 			if not %SendMessage.visible:
-				if %TypedMessage.text != "":
-					send_message.rpc(%Username.text, %TypedMessage.text, multiplayer.is_server())
-					%TypedMessage.text = ""
+				if %MessageInput.text != "":
+					send_message.rpc(%Username.text, %MessageInput.text, multiplayer.is_server())
+					%MessageInput.text = ""
 				%ChatBoxDisapearsTimer.start()
 			else:
 				%ChatBox.show()
@@ -49,7 +49,7 @@ func _input(event):
 
 	if Input.is_action_just_pressed("ui_cancel"):
 		%SendMessage.hide()
-		%TypedMessage.text = ""
+		%MessageInput.text = ""
 		%ChatBoxDisapearsTimer.start()
 
 # Function to send a message
@@ -65,7 +65,7 @@ func send_message(player_name, message, is_server):
 	if is_server:
 		player_name = "ADMIN"
 	label_player_name.text = player_name
-	label_player_name.modulate = Color(0.58, 0.64, 0.75)
+	label_player_name.modulate = Color.RED
 
 	# Send the message
 	var label_message = Label.new()
@@ -171,7 +171,7 @@ func quit_game():
 	%Menu.show()
 	%ChatBox.hide()
 	%SendMessage.hide()
-	%TypedMessage.text = ""
+	%MessageInput.text = ""
 	%MapInstance.get_child(0).queue_free()
 
 func _on_menu_button_pressed():
