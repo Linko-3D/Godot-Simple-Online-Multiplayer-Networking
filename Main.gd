@@ -3,8 +3,6 @@ extends Node
 var player = preload("res://player.tscn")
 var map = preload("res://map.tscn")
 
-var peer = ENetMultiplayerPeer.new()
-
 var enter_key_pressed = false
 
 func _process(delta):
@@ -107,6 +105,7 @@ func display_players_connected(node):
 # Server
 
 func _on_host_button_pressed():
+	var peer = ENetMultiplayerPeer.new()
 	peer.create_server(9000)
 	multiplayer.multiplayer_peer = peer
 
@@ -117,6 +116,7 @@ func _on_host_button_pressed():
 # Client
 
 func _on_join_button_pressed():
+	var peer = ENetMultiplayerPeer.new()
 	peer.create_client("localhost", 9000)
 	multiplayer.multiplayer_peer = peer
 
@@ -144,9 +144,10 @@ func load_game():
 
 func remove_player(id):
 	var player = %SpawnPosition.get_node_or_null(str(id))
-	player.queue_free()
+	if player != null:
+		player.queue_free()
 
-	send_message.rpc(str(id), " left the game", false)
+		send_message.rpc(str(id), " left the game", false)
 
 func server_offline():
 	quit_game()
@@ -167,6 +168,7 @@ func _on_no_button_pressed():
 	$Control/QuitConfirmation.hide()
 
 func quit_game():
+	multiplayer.multiplayer_peer = null
 	%Lobby.hide()
 	%Menu.show()
 	%ChatBox.hide()
@@ -174,10 +176,9 @@ func quit_game():
 	%MessageInput.text = ""
 	%MapInstance.get_child(0).queue_free()
 
-func _on_menu_button_pressed():
-	quit_game()
-
-
 func _on_enter_game_button_pressed():
 	add_player.rpc_id(1, multiplayer.get_unique_id())
 	$Control/Lobby.hide()
+
+func _on_disconnect_button_pressed():
+	quit_game()

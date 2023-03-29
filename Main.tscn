@@ -123,9 +123,9 @@ text = "Spectate"
 [node name="HSeparator2" type="HSeparator" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="MenuButton" type="Button" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="DisconnectButton" type="Button" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "< Main menu"
+text = "Disconnect"
 
 [node name="VSeparator" type="VSeparator" parent="Control/Lobby/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -295,7 +295,8 @@ wait_time = 5.0
 one_shot = true
 
 [connection signal="pressed" from="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer/EnterGameButton" to="." method="_on_enter_game_button_pressed"]
-[connection signal="pressed" from="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer/DisconnectButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
 [connection signal="pressed" from="Control/Menu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="text_submitted" from="Control/Menu/MarginContainer/VBoxContainer/Username" to="." method="_on_username_text_submitted"]
 [connection signal="pressed" from="Control/Menu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
