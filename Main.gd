@@ -1,5 +1,7 @@
 extends Node
 
+const SERVER_PORT = 9000
+
 var player = preload("res://player.tscn")
 var map = preload("res://map.tscn")
 
@@ -38,17 +40,17 @@ func _input(event):
 				if %MessageInput.text != "":
 					send_message.rpc(%Username.text, %MessageInput.text, multiplayer.is_server())
 					%MessageInput.text = ""
-				%ChatBoxDisapearsTimer.start()
+				%ChatBoxDisappearsTimer.start()
 			else:
 				%ChatBox.show()
-				%ChatBoxDisapearsTimer.stop()
+				%ChatBoxDisappearsTimer.stop()
 	else:
 		enter_key_pressed = false
 
 	if Input.is_action_just_pressed("ui_cancel"):
 		%SendMessage.hide()
 		%MessageInput.text = ""
-		%ChatBoxDisapearsTimer.start()
+		%ChatBoxDisappearsTimer.start()
 
 # Function to send a message
 
@@ -77,7 +79,7 @@ func send_message(player_name, message, is_server):
 		%DisplayedMessage.get_child(0). queue_free()
 
 	%ChatBox.show()
-	%ChatBoxDisapearsTimer.start()
+	%ChatBoxDisappearsTimer.start()
 
 # Function to display players connected, it refreshes each time it is called
 
@@ -106,7 +108,7 @@ func display_players_connected(node):
 
 func _on_host_button_pressed():
 	var peer = ENetMultiplayerPeer.new()
-	peer.create_server(9000)
+	peer.create_server(SERVER_PORT)
 	multiplayer.multiplayer_peer = peer
 
 	multiplayer.peer_disconnected.connect(remove_player)
@@ -117,7 +119,7 @@ func _on_host_button_pressed():
 
 func _on_join_button_pressed():
 	var peer = ENetMultiplayerPeer.new()
-	peer.create_client("localhost", 9000)
+	peer.create_client("localhost", SERVER_PORT)
 	multiplayer.multiplayer_peer = peer
 
 	if %Username.text == "":
@@ -128,7 +130,7 @@ func _on_join_button_pressed():
 	load_game()
 
 @rpc("any_peer")
-func add_player(id):
+func add_player(id, displayed_name):
 	var player_instance = player.instantiate()
 	player_instance.name = str(id)
 	%SpawnPosition.add_child(player_instance)
@@ -155,7 +157,7 @@ func server_offline():
 func _on_username_text_submitted(new_text):
 	_on_join_button_pressed()
 
-func _on_chat_box_disapears_timer_timeout():
+func _on_chat_box_disappears_timer_timeout():
 	%ChatBox.hide()
 
 func _on_quit_button_button_down():
@@ -177,7 +179,7 @@ func quit_game():
 	%MapInstance.get_child(0).queue_free()
 
 func _on_enter_game_button_pressed():
-	add_player.rpc_id(1, multiplayer.get_unique_id())
+	add_player.rpc_id(1, multiplayer.get_unique_id(), %Username.text)
 	$Control/Lobby.hide()
 
 func _on_disconnect_button_pressed():

@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://drffjlsqb5lod"]
+[gd_scene load_steps=2 format=3 uid="uid://drffjlsqb5lod"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_djg2a"]
-[ext_resource type="Texture2D" uid="uid://bgv65sge8jan3" path="res://icon.svg" id="2_mqf12"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_djg2a")
@@ -116,13 +115,6 @@ text = "Enter game"
 [node name="HSeparator" type="HSeparator" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="SpectateButton" type="Button" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Spectate"
-
-[node name="HSeparator2" type="HSeparator" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
 [node name="DisconnectButton" type="Button" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Disconnect"
@@ -135,7 +127,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-text = "Connected:"
+text = "Player(s) connected:"
 
 [node name="LobbyConnectedPlayers" type="VBoxContainer" parent="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
@@ -215,20 +207,9 @@ layout_mode = 2
 [node name="Username" type="LineEdit" parent="Control/Menu/MarginContainer/VBoxContainer" groups=["player_name"]]
 unique_name_in_owner = true
 layout_mode = 2
+text = "AAA"
 placeholder_text = "Username"
 max_length = 20
-
-[node name="MenuButton" type="MenuButton" parent="Control/Menu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Map"
-item_count = 2
-popup/item_0/text = "Map 1"
-popup/item_0/icon = ExtResource("2_mqf12")
-popup/item_0/id = 0
-popup/item_1/text = "Map 2"
-popup/item_1/icon = ExtResource("2_mqf12")
-popup/item_1/checked = true
-popup/item_1/id = 1
 
 [node name="JoinButton" type="Button" parent="Control/Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -289,7 +270,7 @@ text = "No"
 _spawnable_scenes = PackedStringArray("res://player.tscn")
 spawn_path = NodePath("../SpawnPosition")
 
-[node name="ChatBoxDisapearsTimer" type="Timer" parent="."]
+[node name="ChatBoxDisappearsTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
@@ -303,4 +284,4 @@ one_shot = true
 [connection signal="button_down" from="Control/Menu/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_button_down"]
 [connection signal="pressed" from="Control/QuitConfirmation/MarginContainer/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="Control/QuitConfirmation/MarginContainer/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
-[connection signal="timeout" from="ChatBoxDisapearsTimer" to="." method="_on_chat_box_disapears_timer_timeout"]
+[connection signal="timeout" from="ChatBoxDisappearsTimer" to="." method="_on_chat_box_disappears_timer_timeout"]
