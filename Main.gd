@@ -11,14 +11,14 @@ func _process(delta):
 	display_players_connected(%LobbyConnectedPlayers)
 
 func _ready():
-	$Control/Menu.show()
+	%Menu.show()
 	%SendMessage.position.y = get_viewport().size.y - (get_viewport().size.y / 6)
 	%ChatBox.position.y = get_viewport().size.y - (get_viewport().size.y / 3) - 15
 	%SendMessage.hide()
 	%ChatBox.hide()
 	%Scoreboard.hide()
-	$Control/Lobby.hide()
-	$Control/QuitConfirmation.hide()
+	%Lobby.hide()
+	%QuitConfirmation.hide()
 
 # Hold the Tab key to display connected players and press Enter to send a message
 
@@ -142,7 +142,7 @@ func load_game():
 	var map_instance = map.instantiate()
 	%MapInstance.add_child(map_instance)
 	
-	$Control/Lobby.visible = !multiplayer.is_server()
+	%Lobby.visible = !multiplayer.is_server()
 
 func remove_player(id):
 	var player = %SpawnPosition.get_node_or_null(str(id))
@@ -161,13 +161,13 @@ func _on_chat_box_disappears_timer_timeout():
 	%ChatBox.hide()
 
 func _on_quit_button_button_down():
-	$Control/QuitConfirmation.show()
+	%QuitConfirmation.show()
 
 func _on_yes_button_pressed():
 	get_tree().quit()
 
 func _on_no_button_pressed():
-	$Control/QuitConfirmation.hide()
+	%QuitConfirmation.hide()
 
 func quit_game():
 	multiplayer.multiplayer_peer = null
@@ -180,7 +180,7 @@ func quit_game():
 
 func _on_enter_game_button_pressed():
 	add_player.rpc_id(1, multiplayer.get_unique_id(), %Username.text)
-	$Control/Lobby.hide()
+	%Lobby.hide()
 
 func _on_disconnect_button_pressed():
 	quit_game()
