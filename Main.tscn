@@ -207,7 +207,6 @@ layout_mode = 2
 [node name="Username" type="LineEdit" parent="Control/Menu/MarginContainer/VBoxContainer" groups=["player_name"]]
 unique_name_in_owner = true
 layout_mode = 2
-text = "AAA"
 placeholder_text = "Username"
 max_length = 20
 
