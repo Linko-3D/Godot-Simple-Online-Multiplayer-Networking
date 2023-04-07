@@ -65,7 +65,7 @@ max_length = 20
 [node name="To" type="LineEdit" parent="Control/Menu/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-placeholder_text = "Enter the IP of the server"
+placeholder_text = "Server public IP"
 
 [node name="JoinButton" type="Button" parent="Control/Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2

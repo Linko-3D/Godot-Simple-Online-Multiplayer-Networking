@@ -6,12 +6,12 @@ var map = preload("res://map.tscn")
 var PORT = 9999
 var upnp = UPNP.new()
 
-# Allow online multiplayer with public IP
+# Create port mapping to allow online multiplayer with public IP
 func _ready():
 	upnp.discover()
 	var result = upnp.add_port_mapping(PORT)
 	if result == OK:
-		print("Port mapping successfully added.")
+		print("Port mapping successfully added. Public IP: " + upnp.query_external_address())
 	else:
 		print("Failed to add port mapping. Error:", result)
 	%DisplayPublicIP.text = upnp.query_external_address()
