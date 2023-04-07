@@ -6,9 +6,9 @@ var map = preload("res://map.tscn")
 var PORT = 9999
 var upnp = UPNP.new()
 
-# Online multiplayer
+# Allow online multiplayer with public IP
 func _ready():
-	upnp.discover(2000, 2)  # 2000 is the timeout in milliseconds, 2 is the maximum number of hops
+	upnp.discover()
 	var result = upnp.add_port_mapping(PORT)
 	if result == OK:
 		print("Port mapping successfully added.")
