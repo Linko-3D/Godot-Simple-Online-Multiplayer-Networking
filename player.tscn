@@ -24,7 +24,7 @@ horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="Authority" type="ColorRect" parent="."]
-modulate = Color(0, 1, 0, 1)
+modulate = Color(0, 0, 0, 1)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

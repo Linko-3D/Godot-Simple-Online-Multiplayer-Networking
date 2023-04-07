@@ -62,10 +62,26 @@ layout_mode = 2
 placeholder_text = "Username"
 max_length = 20
 
+[node name="To" type="LineEdit" parent="Control/Menu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Enter the IP of the server"
+
 [node name="JoinButton" type="Button" parent="Control/Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Join
 "
+
+[node name="BackgroundColor" type="ColorRect" parent="Control"]
+offset_right = 125.0
+offset_bottom = 24.0
+
+[node name="DisplayPublicIP" type="Label" parent="Control"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+offset_right = 123.0
+offset_bottom = 26.0
+text = "111.111.111.111"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player.tscn")

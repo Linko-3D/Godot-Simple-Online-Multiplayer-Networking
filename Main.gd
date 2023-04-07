@@ -3,10 +3,23 @@ extends Node
 var player = preload("res://player.tscn")
 var map = preload("res://map.tscn")
 
+var PORT = 9999
+var upnp = UPNP.new()
+
+# Online multiplayer
+func _ready():
+	upnp.discover(2000, 2)  # 2000 is the timeout in milliseconds, 2 is the maximum number of hops
+	var result = upnp.add_port_mapping(PORT)
+	if result == OK:
+		print("Port mapping successfully added.")
+	else:
+		print("Failed to add port mapping. Error:", result)
+	%DisplayPublicIP.text = upnp.query_external_address()
+
 # Server
 func _on_host_button_pressed():
 	var peer = ENetMultiplayerPeer.new()
-	peer.create_server(9999)
+	peer.create_server(PORT)
 	multiplayer.multiplayer_peer = peer
 
 	multiplayer.peer_connected.connect(add_player)
@@ -17,7 +30,7 @@ func _on_host_button_pressed():
 # Client
 func _on_join_button_pressed():
 	var peer = ENetMultiplayerPeer.new()
-	peer.create_client("localhost", 9999)
+	peer.create_client(%To.text, PORT)
 	multiplayer.multiplayer_peer = peer
 		
 	multiplayer.connected_to_server.connect(load_game)
@@ -42,3 +55,9 @@ func remove_player(id):
 func server_offline():
 	%Menu.show()
 	%MapInstance.get_child(0).queue_free()
+	
+	var result = upnp.delete_port_mapping(PORT, "UDP")
+	if result == OK:
+		print("Port mapping successfully removed.")
+	else:
+		print("Failed to remove port mapping. Error:", result)

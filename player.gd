@@ -7,7 +7,7 @@ func _enter_tree():
 
 	if not is_multiplayer_authority(): return
 	$PlayerName.text = get_tree().get_first_node_in_group("player_name").text
-	$PlayerName.modulate = Color(0, 1, 0)
+	$PlayerName.modulate = Color(0, 0, 0)
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
