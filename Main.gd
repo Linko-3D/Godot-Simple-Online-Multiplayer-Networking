@@ -4,7 +4,6 @@ var player = preload("res://player.tscn")
 var map = preload("res://map.tscn")
 
 # Server
-
 func _on_host_button_pressed():
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_server(9999)
@@ -16,7 +15,6 @@ func _on_host_button_pressed():
 	load_game()
 
 # Client
-
 func _on_join_button_pressed():
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_client("localhost", 9999)
@@ -24,7 +22,7 @@ func _on_join_button_pressed():
 		
 	multiplayer.connected_to_server.connect(load_game)
 	multiplayer.server_disconnected.connect(server_offline)
-
+	
 func add_player(id):
 	var player_instance = player.instantiate()
 	player_instance.name = str(id)
@@ -44,9 +42,3 @@ func remove_player(id):
 func server_offline():
 	%Menu.show()
 	%MapInstance.get_child(0).queue_free()
-
-func _on_username_text_submitted(new_text):
-	_on_join_button_pressed()
-
-func _on_chat_box_disapears_timer_timeout():
-	%ChatBox.hide()
