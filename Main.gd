@@ -11,7 +11,12 @@ func _process(delta):
 	display_players_connected(%LobbyConnectedPlayers)
 
 func _ready():
-	%Menu.show()
+#	var upnp = UPNP.new()
+#	print(upnp.discover())
+#	print(upnp.get_device_count())
+#	print(upnp.get_device(1))
+
+	%MainMenu.show()
 	%SendMessage.position.y = get_viewport().size.y - (get_viewport().size.y / 6)
 	%ChatBox.position.y = get_viewport().size.y - (get_viewport().size.y / 3) - 15
 	%SendMessage.hide()
@@ -23,7 +28,7 @@ func _ready():
 # Hold the Tab key to display connected players and press Enter to send a message
 
 func _input(event):
-	if %Menu.visible: return # If the starting menu is not visible it means we are in the game
+	if %MainMenu.visible: return # If the starting menu is not visible it means we are in the game
 
 	if Input.is_key_pressed(KEY_TAB):
 		display_players_connected(%PlayersConnectedList)
@@ -121,13 +126,8 @@ func _on_join_button_pressed():
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_client("localhost", SERVER_PORT)
 	multiplayer.multiplayer_peer = peer
-
-	if %Username.text == "":
-		%Username.text = "Player"
-
+	multiplayer.connected_to_server.connect(load_game)
 	multiplayer.server_disconnected.connect(server_offline)
-
-	load_game()
 
 @rpc("any_peer")
 func add_player(id, displayed_name):
@@ -138,7 +138,11 @@ func add_player(id, displayed_name):
 	send_message.rpc(str(id), " has joined the game", false)
 
 func load_game():
-	%Menu.hide()
+	if %Username.text == "":
+		%Username.text = "Player"
+	
+	
+	%MainMenu.hide()
 	var map_instance = map.instantiate()
 	%MapInstance.add_child(map_instance)
 	
@@ -172,7 +176,7 @@ func _on_no_button_pressed():
 func quit_game():
 	multiplayer.multiplayer_peer = null
 	%Lobby.hide()
-	%Menu.show()
+	%MainMenu.show()
 	%ChatBox.hide()
 	%SendMessage.hide()
 	%MessageInput.text = ""

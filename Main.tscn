@@ -170,7 +170,7 @@ text = "Players:"
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Menu" type="PanelContainer" parent="Control"]
+[node name="MainMenu" type="PanelContainer" parent="Control"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -185,40 +185,40 @@ offset_bottom = 118.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/Menu"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/MainMenu"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MainMenu/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="HostButton" type="Button" parent="Control/Menu/MarginContainer/VBoxContainer"]
+[node name="HostButton" type="Button" parent="Control/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Host"
 
-[node name="HSeparator" type="HSeparator" parent="Control/Menu/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Control/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Username" type="LineEdit" parent="Control/Menu/MarginContainer/VBoxContainer" groups=["player_name"]]
+[node name="Username" type="LineEdit" parent="Control/MainMenu/MarginContainer/VBoxContainer" groups=["player_name"]]
 unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "Username"
 max_length = 20
 
-[node name="JoinButton" type="Button" parent="Control/Menu/MarginContainer/VBoxContainer"]
+[node name="JoinButton" type="Button" parent="Control/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Join
 "
 
-[node name="HSeparator2" type="HSeparator" parent="Control/Menu/MarginContainer/VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="Control/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="QuitButton" type="Button" parent="Control/Menu/MarginContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="Control/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit game"
 
@@ -278,10 +278,10 @@ one_shot = true
 [connection signal="pressed" from="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer/EnterGameButton" to="." method="_on_enter_game_button_pressed"]
 [connection signal="pressed" from="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer/DisconnectButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Control/Lobby/MarginContainer/HBoxContainer/VBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
-[connection signal="pressed" from="Control/Menu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
-[connection signal="text_submitted" from="Control/Menu/MarginContainer/VBoxContainer/Username" to="." method="_on_username_text_submitted"]
-[connection signal="pressed" from="Control/Menu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
-[connection signal="button_down" from="Control/Menu/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_button_down"]
+[connection signal="pressed" from="Control/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="text_submitted" from="Control/MainMenu/MarginContainer/VBoxContainer/Username" to="." method="_on_username_text_submitted"]
+[connection signal="pressed" from="Control/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="button_down" from="Control/MainMenu/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_button_down"]
 [connection signal="pressed" from="Control/QuitConfirmation/MarginContainer/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="Control/QuitConfirmation/MarginContainer/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]
 [connection signal="timeout" from="ChatBoxDisappearsTimer" to="." method="_on_chat_box_disappears_timer_timeout"]
