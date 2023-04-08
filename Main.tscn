@@ -31,14 +31,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -72.5
-offset_top = -69.0
-offset_right = 72.5
-offset_bottom = 69.0
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/Menu"]
 layout_mode = 2
@@ -49,6 +48,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu/MarginContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="HostButton" type="Button" parent="Control/Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -66,6 +66,37 @@ placeholder_text = "Enter server IP"
 layout_mode = 2
 text = "Join"
 
+[node name="Lobby" type="PanelContainer" parent="Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Lobby"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Lobby/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="EnterGameButton" type="Button" parent="Control/Lobby/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Enter game"
+
 [node name="DisplayPublicIP" type="Label" parent="Control"]
 unique_name_in_owner = true
 layout_mode = 0
@@ -79,3 +110,4 @@ spawn_path = NodePath("../SpawnPosition")
 [connection signal="pressed" from="Control/Menu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="text_submitted" from="Control/Menu/MarginContainer/VBoxContainer/To" to="." method="_on_to_text_submitted"]
 [connection signal="pressed" from="Control/Menu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="Control/Lobby/MarginContainer/VBoxContainer/EnterGameButton" to="." method="_on_enter_game_button_pressed"]

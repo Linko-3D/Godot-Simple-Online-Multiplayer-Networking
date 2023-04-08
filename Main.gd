@@ -8,6 +8,8 @@ var PORT = 9999
 
 # Port mapping for online multiplayer
 func _ready():
+	%Lobby.hide()
+	
 	var upnp = UPNP.new()
 	upnp.discover()
 	var result = upnp.add_port_mapping(PORT)
@@ -37,7 +39,8 @@ func _on_join_button_pressed():
 
 func load_game():
 	%Menu.hide()
-	add_player.rpc_id(1, multiplayer.get_unique_id())
+	if not multiplayer.is_server():
+		%Lobby.show()
 
 @rpc("any_peer")
 func add_player(id):
@@ -53,3 +56,7 @@ func server_offline():
 
 func _on_to_text_submitted(new_text):
 	_on_join_button_pressed()
+
+func _on_enter_game_button_pressed():
+	add_player.rpc_id(1, multiplayer.get_unique_id())
+	%Lobby.hide()
