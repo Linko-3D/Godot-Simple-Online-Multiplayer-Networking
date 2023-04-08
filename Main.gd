@@ -29,7 +29,7 @@ func _on_host_button_pressed():
 
 func _on_join_button_pressed():
 	var peer = ENetMultiplayerPeer.new()
-	peer.create_client("localhost", PORT)
+	peer.create_client(%To.text, PORT)
 	multiplayer.multiplayer_peer = peer
 
 	multiplayer.connected_to_server.connect(load_game)
@@ -50,3 +50,6 @@ func remove_player(id):
 
 func server_offline():
 	%Menu.show()
+
+func _on_to_text_submitted(new_text):
+	_on_join_button_pressed()

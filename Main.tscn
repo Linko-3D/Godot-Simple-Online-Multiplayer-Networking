@@ -58,6 +58,7 @@ text = "Host"
 layout_mode = 2
 
 [node name="To" type="LineEdit" parent="Control/Menu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "Enter server IP"
 
@@ -76,4 +77,5 @@ _spawnable_scenes = PackedStringArray("res://player.tscn")
 spawn_path = NodePath("../SpawnPosition")
 
 [connection signal="pressed" from="Control/Menu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="text_submitted" from="Control/Menu/MarginContainer/VBoxContainer/To" to="." method="_on_to_text_submitted"]
 [connection signal="pressed" from="Control/Menu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
