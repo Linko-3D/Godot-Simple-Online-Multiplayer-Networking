@@ -17,7 +17,7 @@ func _ready():
 		print("Port mapping successfully added. Public IP: " + upnp.query_external_address())
 	else:
 		print("Failed to add port mapping. Error:", result)
-	%DisplayPublicIP.text = upnp.query_external_address()
+	%DisplayPublicIP.text = " " + upnp.query_external_address()
 
 # Server
 func _on_host_button_pressed():
