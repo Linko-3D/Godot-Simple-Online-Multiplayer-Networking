@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 func _ready():
 	set_multiplayer_authority(name.to_int())
-
 	$Authority.visible = is_multiplayer_authority()
 
 func _physics_process(delta):
