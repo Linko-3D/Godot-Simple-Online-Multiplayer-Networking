@@ -5,10 +5,10 @@ extends Node
 @export var SpawnPosition : NodePath
 
 var PORT = 9999
-var upnp = UPNP.new()
 
-# Create port mapping to allow online multiplayer with public IP
+# Port mapping for online multiplayer
 func _ready():
+	var upnp = UPNP.new()
 	upnp.discover()
 	var result = upnp.add_port_mapping(PORT)
 	if result == OK:
@@ -28,38 +28,24 @@ func _on_host_button_pressed():
 
 	load_game()
 
-# Client
 func _on_join_button_pressed():
 	var peer = ENetMultiplayerPeer.new()
-	peer.create_client(%To.text, PORT)
+	peer.create_client("localhost", PORT)
 	multiplayer.multiplayer_peer = peer
-		
+
 	multiplayer.connected_to_server.connect(load_game)
 	multiplayer.server_disconnected.connect(server_offline)
-	
+
 func add_player(id):
 	var player_instance = player.instantiate()
 	player_instance.name = str(id)
 	%SpawnPosition.add_child(player_instance)
-	pass
-
-func load_game():
-	if %Username.text == "":
-		%Username.text = "Player"
-	
-	%Menu.hide()
-	var map_instance = map.instantiate()
-	%MapInstance.add_child(map_instance)
 
 func remove_player(id):
 	%SpawnPosition.get_node_or_null(str(id)).queue_free()
 
+func load_game():
+	%Menu.hide()
+
 func server_offline():
 	%Menu.show()
-	%MapInstance.get_child(0).queue_free()
-	
-	var result = upnp.delete_port_mapping(PORT, "UDP")
-	if result == OK:
-		print("Port mapping successfully removed.")
-	else:
-		print("Failed to remove port mapping. Error:", result)

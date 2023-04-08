@@ -1,17 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://drffjlsqb5lod"]
+[gd_scene load_steps=3 format=3 uid="uid://x1lwev7chtcc"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_djg2a"]
-[ext_resource type="PackedScene" uid="uid://5w7ik85j8b35" path="res://player.tscn" id="2_u4cx2"]
-[ext_resource type="PackedScene" uid="uid://b1wnnyfeo0c8q" path="res://map.tscn" id="3_1k8yi"]
+[ext_resource type="Script" path="res://main.gd" id="1_qmj53"]
+[ext_resource type="PackedScene" uid="uid://dmqs76oj7hyhh" path="res://player.tscn" id="2_vtufg"]
 
 [node name="Main" type="Node"]
-script = ExtResource("1_djg2a")
-player = ExtResource("2_u4cx2")
-map = ExtResource("3_1k8yi")
-SpawnPosition = NodePath("SpawnPosition")
+script = ExtResource("1_qmj53")
+player = ExtResource("2_vtufg")
 
 [node name="MapInstance" type="Node" parent="."]
-unique_name_in_owner = true
 
 [node name="SpawnPosition" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -25,7 +21,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_lock_ = true
 
 [node name="Menu" type="PanelContainer" parent="Control"]
 unique_name_in_owner = true
@@ -35,60 +30,43 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -153.5
-offset_top = -86.0
-offset_right = 153.5
-offset_bottom = 86.0
+offset_left = -72.5
+offset_top = -69.0
+offset_right = 72.5
+offset_bottom = 69.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/Menu"]
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Menu/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
 
 [node name="HostButton" type="Button" parent="Control/Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Host"
 
-[node name="HSeparator" type="HSeparator" parent="Control/Menu/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="Username" type="LineEdit" parent="Control/Menu/MarginContainer/VBoxContainer" groups=["player_name"]]
-unique_name_in_owner = true
-layout_mode = 2
-placeholder_text = "Username"
-max_length = 20
 
 [node name="To" type="LineEdit" parent="Control/Menu/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
 layout_mode = 2
-placeholder_text = "Server public IP"
+placeholder_text = "Enter server IP"
 
 [node name="JoinButton" type="Button" parent="Control/Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Join
-"
-
-[node name="BackgroundColor" type="ColorRect" parent="Control"]
-layout_mode = 0
-offset_right = 125.0
-offset_bottom = 24.0
+text = "Join"
 
 [node name="DisplayPublicIP" type="Label" parent="Control"]
 unique_name_in_owner = true
-modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_right = 123.0
-offset_bottom = 26.0
-text = "111.111.111.111"
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player.tscn")
