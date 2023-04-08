@@ -1,7 +1,8 @@
 extends Node
 
-var player = preload("res://player.tscn")
-var map = preload("res://map.tscn")
+@export var player : PackedScene
+@export var map : PackedScene
+@export var SpawnPosition : NodePath
 
 var PORT = 9999
 var upnp = UPNP.new()
@@ -40,6 +41,7 @@ func add_player(id):
 	var player_instance = player.instantiate()
 	player_instance.name = str(id)
 	%SpawnPosition.add_child(player_instance)
+	pass
 
 func load_game():
 	if %Username.text == "":
