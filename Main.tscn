@@ -1,13 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://x1lwev7chtcc"]
+[gd_scene load_steps=4 format=3 uid="uid://x1lwev7chtcc"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_qmj53"]
 [ext_resource type="PackedScene" uid="uid://dmqs76oj7hyhh" path="res://player.tscn" id="2_vtufg"]
+[ext_resource type="PackedScene" uid="uid://clvp4cain5340" path="res://map.tscn" id="3_5fxvx"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_qmj53")
 player = ExtResource("2_vtufg")
+map = ExtResource("3_5fxvx")
 
 [node name="MapInstance" type="Node" parent="."]
+unique_name_in_owner = true
 
 [node name="SpawnPosition" type="Node2D" parent="."]
 unique_name_in_owner = true

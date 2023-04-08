@@ -2,12 +2,12 @@ extends Node
 
 @export var player : PackedScene
 @export var map : PackedScene
-@export var SpawnPosition : NodePath
 
 var PORT = 9999
 
 # Port mapping for online multiplayer
 func _ready():
+#	$MultiplayerSpawner.spawn_path = SpawnPosition
 	%Lobby.hide()
 	
 	var upnp = UPNP.new()
@@ -39,6 +39,7 @@ func _on_join_button_pressed():
 
 func load_game():
 	%Menu.hide()
+	%MapInstance.add_child(map.instantiate())
 	if not multiplayer.is_server():
 		%Lobby.show()
 
