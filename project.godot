@@ -14,3 +14,9 @@ config/name="Godot Simple Networking"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=768
+window/size/viewport_height=432
+window/size/resizable=false

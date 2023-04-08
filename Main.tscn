@@ -12,7 +12,7 @@ player = ExtResource("2_vtufg")
 [node name="SpawnPosition" type="Node2D" parent="."]
 unique_name_in_owner = true
 y_sort_enabled = true
-position = Vector2(350, 200)
+position = Vector2(200, 150)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -21,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="Menu" type="PanelContainer" parent="Control"]
 unique_name_in_owner = true
@@ -36,6 +37,8 @@ offset_right = 72.5
 offset_bottom = 69.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/Menu"]
 layout_mode = 2
