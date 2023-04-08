@@ -23,7 +23,6 @@ func _on_host_button_pressed():
 	peer.create_server(PORT)
 	multiplayer.multiplayer_peer = peer
 
-	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
 
 	load_game()
@@ -36,6 +35,11 @@ func _on_join_button_pressed():
 	multiplayer.connected_to_server.connect(load_game)
 	multiplayer.server_disconnected.connect(server_offline)
 
+func load_game():
+	%Menu.hide()
+	add_player.rpc_id(1, multiplayer.get_unique_id())
+
+@rpc("any_peer")
 func add_player(id):
 	var player_instance = player.instantiate()
 	player_instance.name = str(id)
@@ -43,9 +47,6 @@ func add_player(id):
 
 func remove_player(id):
 	%SpawnPosition.get_node_or_null(str(id)).queue_free()
-
-func load_game():
-	%Menu.hide()
 
 func server_offline():
 	%Menu.show()
