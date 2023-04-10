@@ -7,6 +7,7 @@ var PORT = 9999
 
 # Port mapping for online multiplayer
 func _ready():
+	%Menu.show()
 	%Lobby.hide()
 	
 	var upnp = UPNP.new()

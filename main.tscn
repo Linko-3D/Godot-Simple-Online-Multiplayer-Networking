@@ -84,6 +84,7 @@ offset_right = 75.0
 offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_group_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/Lobby"]
 layout_mode = 2
@@ -102,6 +103,7 @@ text = "Enter game"
 
 [node name="DisplayPublicIP" type="Label" parent="Control"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
