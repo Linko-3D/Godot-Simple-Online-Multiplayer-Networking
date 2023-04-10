@@ -7,7 +7,6 @@ var PORT = 9999
 
 # Port mapping for online multiplayer
 func _ready():
-#	$MultiplayerSpawner.spawn_path = SpawnPosition
 	%Lobby.hide()
 	
 	var upnp = UPNP.new()
