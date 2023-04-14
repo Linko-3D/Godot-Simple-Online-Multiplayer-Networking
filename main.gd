@@ -61,3 +61,6 @@ func _on_to_text_submitted(new_text):
 func _on_enter_game_button_pressed():
 	add_player.rpc_id(1, multiplayer.get_unique_id())
 	%Lobby.hide()
+
+func _on_username_text_submitted(new_text):
+	_on_enter_game_button_pressed()
