@@ -4,7 +4,12 @@ extends Node
 @export var map : PackedScene
 
 var PORT = 9999
-var spawned = false
+
+func _process(delta):
+	if %SetUsername.text == "":
+		Data.username = "Anonymous"
+	else:
+		Data.username = %SetUsername.text
 
 # Port mapping for online multiplayer
 func _ready():
@@ -22,8 +27,10 @@ func _ready():
 
 func _input(event):
 	if Input.is_action_just_pressed("ui_cancel"):
-		if not %Menu.visible and spawned:
-			%Lobby.visible = !%Lobby.visible
+		if %SpawnPosition.get_node(str(multiplayer.get_unique_id())):
+			if not %Menu.visible:
+				%ReturnToLobby.show()
+				Data.can_control = false
 
 
 # Server
@@ -51,9 +58,10 @@ func load_game():
 		%Lobby.show()
 
 func _on_enter_game_button_pressed(): # Lobby button
-	add_player.rpc_id(1, multiplayer.get_unique_id())
-	spawned = true
+	if not %SpawnPosition.get_node(str(multiplayer.get_unique_id())):
+		add_player.rpc_id(1, multiplayer.get_unique_id())
 	%Lobby.hide()
+	Data.can_control = true
 
 @rpc("any_peer")
 func add_player(id):
@@ -75,9 +83,20 @@ func _on_to_text_submitted(new_text):
 func _on_disconnect_button_pressed():
 	remove_player.rpc_id(1, multiplayer.get_unique_id())
 	%MapInstance.get_child(0).queue_free()
-	spawned = false
 	%Lobby.hide()
 	%Menu.show()
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+
+func _on_set_username_text_submitted(new_text):
+	_on_enter_game_button_pressed()
+
+func _on_yes_button_pressed():
+	remove_player.rpc_id(1, multiplayer.get_unique_id())
+	%ReturnToLobby.hide()
+	%Lobby.show()
+
+func _on_no_button_pressed():
+	%ReturnToLobby.hide()
+	Data.can_control = true
