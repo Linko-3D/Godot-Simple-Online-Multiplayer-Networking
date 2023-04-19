@@ -183,6 +183,7 @@ text = "No"
 
 [node name="DisplayPublicIP" type="Label" parent="Control"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 26.0
 

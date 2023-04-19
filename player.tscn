@@ -10,9 +10,6 @@ properties/0/sync = true
 properties/1/path = NodePath("Username:text")
 properties/1/spawn = true
 properties/1/sync = true
-properties/2/path = NodePath("Sprite2D:modulate")
-properties/2/spawn = true
-properties/2/sync = true
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_hc75s")
@@ -22,7 +19,7 @@ offset_left = -69.0
 offset_top = -95.0
 offset_right = 69.0
 offset_bottom = -69.0
-text = "BBB"
+text = "Anonymous"
 horizontal_alignment = 1
 
 [node name="Authority" type="ColorRect" parent="."]
