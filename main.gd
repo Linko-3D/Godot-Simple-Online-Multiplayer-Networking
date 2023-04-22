@@ -5,13 +5,10 @@ extends Node
 
 # Port mapping for online multiplayer
 func _ready():
-	%Menu.show()
-	
 	var upnp = UPNP.new()
 	upnp.discover()
 	var result = upnp.add_port_mapping(9999)
 	%DisplayPublicIP.text = " " + upnp.query_external_address()
-	print("Public IP: " + upnp.query_external_address())
 
 # Server
 func _on_host_button_pressed():
@@ -37,7 +34,7 @@ func load_game():
 	%MapInstance.add_child(map.instantiate())
 	add_player.rpc_id(1, multiplayer.get_unique_id())
 
-@rpc("any_peer")
+@rpc("any_peer") # Add "call_local" to spawn a player from the server
 func add_player(id):
 	var player_instance = player.instantiate()
 	player_instance.name = str(id)
@@ -45,7 +42,7 @@ func add_player(id):
 
 @rpc("any_peer")
 func remove_player(id):
-	if %SpawnPosition.get_node(str(id)): # If the player is in the scene removes it
+	if %SpawnPosition.get_node(str(id)):
 		%SpawnPosition.get_node(str(id)).queue_free()
 
 func server_offline():
