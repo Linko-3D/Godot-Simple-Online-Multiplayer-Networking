@@ -4,6 +4,7 @@ var enter_key_pressed = false
 
 func _ready():
 	%SendMessage.hide()
+	%ChatBox.hide()
 	%SendMessage.position.y = get_viewport().size.y - (get_viewport().size.y / 6)
 
 func _input(event):
@@ -17,7 +18,8 @@ func _input(event):
 				%TypedMessage.text = ""
 				%ChatBoxDisapearsTimer.start()
 			else:
-				%DisplayedMessage.show()
+				%ChatBox.show()
+				%ChatBoxDisapearsTimer.stop()
 	else:
 		enter_key_pressed = false
 	
@@ -28,7 +30,7 @@ func _input(event):
 
 @rpc("call_local", "any_peer")
 func send_message(message):
-	%DisplayedMessage.show()
+	%ChatBox.show()
 	var label_message = Label.new()
 	label_message.text = " " + message
 	%DisplayedMessage.add_child(label_message)
@@ -39,4 +41,4 @@ func send_message(message):
 	%ChatBoxDisapearsTimer.start()
 
 func _on_chat_box_disapears_timer_timeout():
-	%DisplayedMessage.hide()
+	%ChatBox.hide()
