@@ -35,11 +35,6 @@ unique_name_in_owner = true
 layout_mode = 2
 alignment = 2
 
-[node name="ChatBoxDisapearsTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 5.0
-one_shot = true
-
 [node name="SendMessage" type="PanelContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
@@ -72,5 +67,10 @@ text = "Say :"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
+
+[node name="ChatBoxDisapearsTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
 
 [connection signal="timeout" from="ChatBoxDisapearsTimer" to="." method="_on_chat_box_disapears_timer_timeout"]
