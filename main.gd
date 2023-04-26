@@ -10,6 +10,10 @@ func _ready():
 	var result = upnp.add_port_mapping(9999)
 	%DisplayPublicIP.text = " " + upnp.query_external_address()
 
+func _process(delta):
+	if $Chat:
+		$Chat.visible = !%Menu.visible
+
 # Server
 func _on_host_button_pressed():
 	var peer = ENetMultiplayerPeer.new()

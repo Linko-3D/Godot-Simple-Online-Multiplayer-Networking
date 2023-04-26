@@ -13,6 +13,33 @@ script = ExtResource("1_w73g0")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
+[node name="ChatBox" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -10.0
+offset_right = 179.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ChatBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="DisplayedMessage" type="VBoxContainer" parent="ChatBox/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 2
+
+[node name="ChatBoxDisapearsTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
 [node name="SendMessage" type="PanelContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
@@ -45,32 +72,5 @@ text = "Say :"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
-
-[node name="ChatBox" type="PanelContainer" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -10.0
-offset_right = 179.0
-grow_vertical = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="ChatBox"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="DisplayedMessage" type="VBoxContainer" parent="ChatBox/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-alignment = 2
-
-[node name="ChatBoxDisapearsTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 5.0
-one_shot = true
 
 [connection signal="timeout" from="ChatBoxDisapearsTimer" to="." method="_on_chat_box_disapears_timer_timeout"]
