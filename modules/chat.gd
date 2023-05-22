@@ -32,7 +32,7 @@ func _input(event):
 func send_message(message):
 	%ChatBox.show()
 	var label_message = Label.new()
-	label_message.text = " " + message
+	label_message.text = message
 	%DisplayedMessage.add_child(label_message)
 
 	if %DisplayedMessage.get_child_count() > 7:
