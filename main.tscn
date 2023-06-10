@@ -1,14 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://x1lwev7chtcc"]
+[gd_scene load_steps=5 format=3 uid="uid://cs7kdpemhirwt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_qmj53"]
-[ext_resource type="PackedScene" uid="uid://dmqs76oj7hyhh" path="res://player.tscn" id="2_vtufg"]
-[ext_resource type="PackedScene" uid="uid://clvp4cain5340" path="res://map.tscn" id="3_5fxvx"]
-[ext_resource type="PackedScene" uid="uid://cm4mlu65ypsaj" path="res://modules/chat.tscn" id="4_glprs"]
+[ext_resource type="PackedScene" uid="uid://dsm0u4o7lg7sr" path="res://player/player.tscn" id="2_mm035"]
+[ext_resource type="PackedScene" uid="uid://clvp4cain5340" path="res://maps/map.tscn" id="3_y0mr2"]
+[ext_resource type="PackedScene" path="res://modules/chat.tscn" id="4_glprs"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_qmj53")
-player = ExtResource("2_vtufg")
-map = ExtResource("3_5fxvx")
+player = ExtResource("2_mm035")
+map = ExtResource("3_y0mr2")
 
 [node name="MapInstance" type="Node" parent="."]
 unique_name_in_owner = true
@@ -75,7 +75,7 @@ grow_horizontal = 2
 horizontal_alignment = 1
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://player.tscn")
+_spawnable_scenes = PackedStringArray("res://player/player.tscn")
 spawn_path = NodePath("../SpawnPosition")
 
 [connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
