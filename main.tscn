@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cs7kdpemhirwt"]
+[gd_scene load_steps=4 format=3 uid="uid://cs7kdpemhirwt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_qmj53"]
 [ext_resource type="PackedScene" uid="uid://dsm0u4o7lg7sr" path="res://player/player.tscn" id="2_mm035"]
 [ext_resource type="PackedScene" uid="uid://clvp4cain5340" path="res://maps/map.tscn" id="3_y0mr2"]
-[ext_resource type="PackedScene" path="res://modules/chat.tscn" id="4_glprs"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_qmj53")
@@ -17,8 +16,6 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 y_sort_enabled = true
 position = Vector2(200, 150)
-
-[node name="Chat" parent="." instance=ExtResource("4_glprs")]
 
 [node name="Menu" type="PanelContainer" parent="."]
 unique_name_in_owner = true
