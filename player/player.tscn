@@ -7,6 +7,7 @@
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/sync = true
+properties/0/watch = false
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_u4j5f")
