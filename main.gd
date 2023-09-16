@@ -29,7 +29,7 @@ func load_game():
 	%MapInstance.add_child(map.instantiate())
 	add_player.rpc_id(1, multiplayer.get_unique_id())
 
-@rpc("any_peer") # Add "call_local" to spawn a player from the server
+@rpc("any_peer")
 func add_player(id):
 	var player_instance = player.instantiate()
 	player_instance.name = str(id)
