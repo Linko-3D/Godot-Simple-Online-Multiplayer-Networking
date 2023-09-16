@@ -15,21 +15,21 @@ func _on_host_button_pressed():
 
 	load_game()
 
-# Client
+#  Client - Call this in the `ready()` function and set the public IP address of your server for automatic joining
 func _on_join_button_pressed():
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_client(%To.text, 9999)
 	multiplayer.multiplayer_peer = peer
 
-	multiplayer.connected_to_server.connect(load_game) # Only loads if connected to a server
+	multiplayer.connected_to_server.connect(load_game) # Loads only if connected to a server
 	multiplayer.server_disconnected.connect(server_offline)
 
 func load_game():
 	%Menu.hide()
 	%MapInstance.add_child(map.instantiate())
-	add_player.rpc_id(1, multiplayer.get_unique_id())
+	add_player.rpc(multiplayer.get_unique_id())
 
-@rpc("any_peer")
+@rpc("any_peer") # Add "call_local" if you also want to spawn a player from the server
 func add_player(id):
 	var player_instance = player.instantiate()
 	player_instance.name = str(id)
@@ -45,9 +45,9 @@ func server_offline():
 	if %MapInstance.get_child(0):
 		%MapInstance.get_child(0).queue_free()
 
-# Port mapping for online multiplayer
+# Set up port mapping for online multiplayer functionality
 func upnp_setup():
 	var upnp = UPNP.new()
 	upnp.discover()
 	var result = upnp.add_port_mapping(9999)
-	%DisplayPublicIP.text = upnp.query_external_address()
+	%DisplayPublicIP.text = "Server IP: " + upnp.query_external_address()

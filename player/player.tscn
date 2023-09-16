@@ -13,10 +13,10 @@ properties/0/watch = false
 script = ExtResource("1_u4j5f")
 
 [node name="DisplayAuthority" type="ColorRect" parent="."]
-offset_left = -69.0
-offset_top = -69.0
-offset_right = 69.0
-offset_bottom = 69.0
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 70.0
 color = Color(0, 0, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
