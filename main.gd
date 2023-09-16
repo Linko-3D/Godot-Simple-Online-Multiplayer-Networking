@@ -21,7 +21,7 @@ func _on_join_button_pressed():
 	peer.create_client(%To.text, 9999)
 	multiplayer.multiplayer_peer = peer
 
-	multiplayer.connected_to_server.connect(load_game) # Only loads if connected
+	multiplayer.connected_to_server.connect(load_game) # Only loads if connected to a server
 	multiplayer.server_disconnected.connect(server_offline)
 
 func load_game():
