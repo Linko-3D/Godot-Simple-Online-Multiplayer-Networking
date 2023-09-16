@@ -49,5 +49,5 @@ func server_offline():
 func upnp_setup():
 	var upnp = UPNP.new()
 	upnp.discover()
-	var result = upnp.add_port_mapping(9999)
+	upnp.add_port_mapping(9999)
 	%DisplayPublicIP.text = "Server IP: " + upnp.query_external_address()
