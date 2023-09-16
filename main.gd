@@ -3,15 +3,10 @@ extends Node
 @export var player : PackedScene
 @export var map : PackedScene
 
-# Port mapping for online multiplayer
-func _ready():
-	var upnp = UPNP.new()
-	upnp.discover()
-	var result = upnp.add_port_mapping(9999)
-	%DisplayPublicIP.text = " " + upnp.query_external_address()
-
 # Server
 func _on_host_button_pressed():
+	upnp_setup()
+	
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_server(9999)
 	multiplayer.multiplayer_peer = peer
@@ -49,3 +44,10 @@ func server_offline():
 	%Menu.show()
 	if %MapInstance.get_child(0):
 		%MapInstance.get_child(0).queue_free()
+
+# Port mapping for online multiplayer
+func upnp_setup():
+	var upnp = UPNP.new()
+	upnp.discover()
+	var result = upnp.add_port_mapping(9999)
+	%DisplayPublicIP.text = upnp.query_external_address()
