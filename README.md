@@ -1,3 +1,3 @@
 # Godot Simple Networking
 
-A simple Godot networking system for connecting to an online server, spawning players, and updating positions.
+A simple Godot online networking: connect to an online server, spawn players, and update their positions.
