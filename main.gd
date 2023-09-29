@@ -3,9 +3,12 @@ extends Node
 @export var player : PackedScene
 @export var map : PackedScene
 
+func _ready():
+	%Lobby.hide()
+
 # Server
 func _on_host_button_pressed():
-	upnp_setup()
+	#upnp_setup()
 	
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_server(9999)
@@ -27,6 +30,11 @@ func _on_join_button_pressed():
 func load_game():
 	%Menu.hide()
 	%MapInstance.add_child(map.instantiate())
+	if not multiplayer.is_server():
+		%Lobby.show()
+
+func _on_enter_button_pressed():
+	%Lobby.hide()
 	add_player.rpc(multiplayer.get_unique_id())
 
 @rpc("any_peer") # Add "call_local" if you also want to spawn a player from the server
@@ -51,3 +59,6 @@ func upnp_setup():
 	upnp.discover()
 	upnp.add_port_mapping(9999)
 	%DisplayPublicIP.text = "Server IP: " + upnp.query_external_address()
+
+func _on_quit_button_pressed():
+	get_tree().quit()
