@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://dwxveyp5e8a6a"]
+[gd_scene load_steps=2 format=3 uid="uid://dwxveyp5e8a6a"]
+
+[ext_resource type="Script" path="res://chat.gd" id="1_iiw1j"]
 
 [node name="Chat" type="Node"]
+script = ExtResource("1_iiw1j")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -23,7 +26,8 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="DisplayMessages" type="VBoxContainer" parent="Messages/MarginContainer"]
+[node name="DisplayedMessages" type="VBoxContainer" parent="Messages/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="InputBox" type="PanelContainer" parent="."]
@@ -55,7 +59,9 @@ layout_mode = 2
 context_menu_enabled = false
 caret_blink = true
 
-[node name="Button" type="Button" parent="InputBox/MarginContainer/HBoxContainer"]
+[node name="SayButton" type="Button" parent="InputBox/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "Say"
+
+[connection signal="pressed" from="InputBox/MarginContainer/HBoxContainer/SayButton" to="." method="_on_say_button_pressed"]
