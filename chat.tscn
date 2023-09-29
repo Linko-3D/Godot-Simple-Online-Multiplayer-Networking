@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://chat.gd" id="1_iiw1j"]
 
-[node name="Chat" type="Node"]
+[node name="Chat" type="CanvasLayer"]
 script = ExtResource("1_iiw1j")
 
 [node name="Control" type="Control" parent="."]
