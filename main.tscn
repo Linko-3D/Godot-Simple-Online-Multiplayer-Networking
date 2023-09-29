@@ -118,7 +118,6 @@ spawn_path = NodePath("../SpawnPosition")
 
 [node name="IsServer" type="ReferenceRect" parent="."]
 unique_name_in_owner = true
-visible = false
 top_level = true
 anchors_preset = 15
 anchor_right = 1.0

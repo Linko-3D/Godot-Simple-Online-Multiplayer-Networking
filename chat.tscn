@@ -53,16 +53,14 @@ theme_override_constants/margin_bottom = 5
 [node name="HBoxContainer" type="HBoxContainer" parent="InputBox/MarginContainer"]
 layout_mode = 2
 
-[node name="InputText" type="TextEdit" parent="InputBox/MarginContainer/HBoxContainer"]
+[node name="InputText" type="LineEdit" parent="InputBox/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 35)
 layout_mode = 2
-context_menu_enabled = false
-caret_blink = true
 
 [node name="SayButton" type="Button" parent="InputBox/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "Say"
 
+[connection signal="text_submitted" from="InputBox/MarginContainer/HBoxContainer/InputText" to="." method="_on_input_text_text_submitted"]
 [connection signal="pressed" from="InputBox/MarginContainer/HBoxContainer/SayButton" to="." method="_on_say_button_pressed"]
