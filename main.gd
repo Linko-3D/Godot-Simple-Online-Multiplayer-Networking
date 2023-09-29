@@ -30,6 +30,7 @@ func _on_join_button_pressed():
 func load_game():
 	%Menu.hide()
 	%MapInstance.add_child(map.instantiate())
+	
 	if not multiplayer.is_server():
 		%Lobby.show()
 
