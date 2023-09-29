@@ -7,6 +7,10 @@ func _ready():
 	%InputBox.position.y = (get_viewport().size.y / 4) * 3
 
 func _input(event):
+	if Input.is_action_just_pressed("ui_cancel"):
+		%InputBox.hide()
+		%InputText.text = ""
+	
 	if Input.is_action_just_pressed("ui_accept"):
 		%InputBox.visible = !%InputBox.visible
 
