@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://dwxveyp5e8a6a"]
+
+[node name="Chat" type="Node"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Messages" type="PanelContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -195.0
+offset_right = 178.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Messages"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="DisplayMessages" type="VBoxContainer" parent="Messages/MarginContainer"]
+layout_mode = 2
+
+[node name="InputBox" type="PanelContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -282.0
+offset_top = -108.0
+offset_right = 282.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="InputBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InputBox/MarginContainer"]
+layout_mode = 2
+
+[node name="InputText" type="TextEdit" parent="InputBox/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 35)
+layout_mode = 2
+context_menu_enabled = false
+caret_blink = true
+
+[node name="Button" type="Button" parent="InputBox/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Say"
