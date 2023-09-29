@@ -1,10 +1,12 @@
 extends Node
 
 func _on_say_button_pressed():
-	send_message()
+	send_message.rpc(%InputText.text)
+	%InputText.text = ""
+	
 
-func send_message():
+@rpc("call_local", "any_peer")
+func send_message(message):
 	var label = Label.new()
-	label.text = "a"
-	print(label)
-	%DisplayedMessage.add_child(label.instanciate())
+	label.text = message
+	%DisplayedMessages.add_child(label)

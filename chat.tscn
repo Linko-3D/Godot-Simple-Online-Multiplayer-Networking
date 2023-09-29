@@ -15,8 +15,8 @@ offset_bottom = 40.0
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -195.0
-offset_right = 178.0
+offset_top = -200.0
+offset_right = 200.0
 grow_vertical = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="Messages"]
@@ -54,6 +54,7 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 
 [node name="InputText" type="TextEdit" parent="InputBox/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 35)
 layout_mode = 2
 context_menu_enabled = false
