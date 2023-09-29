@@ -4,20 +4,26 @@ func _ready():
 	%InputBox.hide()
 	%Messages.hide()
 
+	%InputBox.position.y = (get_viewport().size.y / 4) * 3
+
 func _input(event):
 	if Input.is_action_just_pressed("ui_accept"):
 		%InputBox.visible = !%InputBox.visible
 
 		if %InputBox.visible == false:
 			_on_say_button_pressed()
+		else:
+			%Messages.show()
 
 func _on_input_text_text_submitted(new_text):
 	_on_say_button_pressed()
 
 func _on_say_button_pressed():
 	%InputBox.hide()
-	send_message.rpc(%InputText.text, str(multiplayer.get_unique_id()))
-	%InputText.text = ""
+	%Timer.start()
+	if %InputText.text != "":
+		send_message.rpc(%InputText.text, str(multiplayer.get_unique_id()))
+		%InputText.text = ""
 
 @rpc("call_local", "any_peer")
 func send_message(message, playerName):

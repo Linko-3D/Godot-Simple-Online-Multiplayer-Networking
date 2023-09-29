@@ -6,7 +6,6 @@ extends Node
 func _ready():
 	%Lobby.hide()
 	%IsServer.hide()
-	#$Chat.hide()
 
 # Server
 func _on_host_button_pressed():

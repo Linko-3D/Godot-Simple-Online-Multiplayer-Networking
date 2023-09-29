@@ -33,9 +33,8 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -282.0
-offset_top = -108.0
+offset_top = -45.0
 offset_right = 282.0
-offset_bottom = -63.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -51,6 +50,7 @@ layout_mode = 2
 
 [node name="InputText" type="LineEdit" parent="InputBox/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 35)
 layout_mode = 2
 caret_blink = true
 
