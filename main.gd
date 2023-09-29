@@ -9,7 +9,7 @@ func _ready():
 
 # Server
 func _on_host_button_pressed():
-	upnp_setup()
+	#upnp_setup()
 
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_server(9999)

@@ -117,6 +117,7 @@ spawn_path = NodePath("../SpawnPosition")
 
 [node name="IsServer" type="ReferenceRect" parent="."]
 unique_name_in_owner = true
+visible = false
 top_level = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -126,6 +127,40 @@ grow_vertical = 2
 border_color = Color(0, 1, 0, 1)
 border_width = 6.0
 editor_only = false
+
+[node name="InputChat" type="PanelContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -282.0
+offset_top = -84.0
+offset_right = 282.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="InputChat"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InputChat/MarginContainer"]
+layout_mode = 2
+
+[node name="InputText" type="TextEdit" parent="InputChat/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 35)
+layout_mode = 2
+context_menu_enabled = false
+caret_blink = true
+
+[node name="Button" type="Button" parent="InputChat/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Say"
 
 [connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="text_submitted" from="Menu/MarginContainer/VBoxContainer/To" to="." method="_on_to_text_submitted"]
