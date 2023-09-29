@@ -61,7 +61,7 @@ text = "Say"
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 
 [connection signal="text_submitted" from="InputBox/MarginContainer/HBoxContainer/InputText" to="." method="_on_input_text_text_submitted"]

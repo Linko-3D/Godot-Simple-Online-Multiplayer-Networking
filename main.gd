@@ -5,11 +5,12 @@ extends Node
 
 func _ready():
 	%Lobby.hide()
-	%IsServer.hide()
+	%IP.hide()
 
 # Server
 func _on_host_button_pressed():
-	#upnp_setup()
+	upnp_setup()
+	%IP.show()
 
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_server(9999)
@@ -17,7 +18,6 @@ func _on_host_button_pressed():
 
 	multiplayer.peer_disconnected.connect(remove_player)
 
-	%IsServer.show()
 	load_game()
 
 #  Client - Call this in the `ready()` function and set the public IP address of your server for automatic joining

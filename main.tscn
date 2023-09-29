@@ -100,34 +100,25 @@ layout_mode = 2
 layout_mode = 2
 text = "Quit game"
 
-[node name="DisplayPublicIP" type="Label" parent="."]
+[node name="IP" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-modulate = Color(0, 1, 0, 1)
-top_level = true
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -79.0
-offset_right = 79.0
-offset_bottom = 26.0
+offset_left = -102.5
+offset_right = 102.5
+offset_bottom = 23.0
 grow_horizontal = 2
+
+[node name="DisplayPublicIP" type="Label" parent="IP"]
+unique_name_in_owner = true
+layout_mode = 2
 horizontal_alignment = 1
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player/player.tscn")
 spawn_path = NodePath("../SpawnPosition")
-
-[node name="IsServer" type="ReferenceRect" parent="."]
-unique_name_in_owner = true
-top_level = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-border_color = Color(0, 1, 0, 1)
-border_width = 6.0
-editor_only = false
 
 [node name="Chat" parent="." instance=ExtResource("4_rr7el")]
 unique_name_in_owner = true
