@@ -5,6 +5,8 @@ extends Node
 
 func _ready():
 	%Lobby.hide()
+	%IsServer.hide()
+	
 
 # Server
 func _on_host_button_pressed():
@@ -16,6 +18,8 @@ func _on_host_button_pressed():
 
 	multiplayer.peer_disconnected.connect(remove_player)
 
+	%IsServer.show()
+	%DisplayPublicIP.text = "Server"
 	load_game()
 
 #  Client - Call this in the `ready()` function and set the public IP address of your server for automatic joining
@@ -30,13 +34,14 @@ func _on_join_button_pressed():
 func load_game():
 	%Menu.hide()
 	%MapInstance.add_child(map.instantiate())
-	
+
 	if not multiplayer.is_server():
 		%Lobby.show()
 
 func _on_enter_button_pressed():
 	%Lobby.hide()
-	add_player.rpc(multiplayer.get_unique_id())
+	if not multiplayer.is_server():
+		add_player.rpc(multiplayer.get_unique_id())
 
 @rpc("any_peer") # Add "call_local" if you also want to spawn a player from the server
 func add_player(id):
