@@ -5,13 +5,8 @@
 [node name="Chat" type="CanvasLayer"]
 script = ExtResource("1_iiw1j")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="Messages" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -31,6 +26,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="InputBox" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -63,5 +59,11 @@ custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "Say"
 
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
 [connection signal="text_submitted" from="InputBox/MarginContainer/HBoxContainer/InputText" to="." method="_on_input_text_text_submitted"]
 [connection signal="pressed" from="InputBox/MarginContainer/HBoxContainer/SayButton" to="." method="_on_say_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
