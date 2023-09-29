@@ -63,6 +63,7 @@ text = "Join"
 
 [node name="Lobby" type="PanelContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -129,6 +130,8 @@ border_width = 6.0
 editor_only = false
 
 [node name="Chat" parent="." instance=ExtResource("4_rr7el")]
+unique_name_in_owner = true
+visible = false
 
 [connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="text_submitted" from="Menu/MarginContainer/VBoxContainer/To" to="." method="_on_to_text_submitted"]

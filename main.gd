@@ -31,6 +31,7 @@ func _on_join_button_pressed():
 	multiplayer.server_disconnected.connect(server_offline)
 
 func load_game():
+	%Chat.show()
 	%Menu.hide()
 	%MapInstance.add_child(map.instantiate())
 
