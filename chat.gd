@@ -1,5 +1,7 @@
 extends Node
 
+var enter_key_pressed = false
+
 func _ready():
 	%InputBox.hide()
 	%Messages.hide()
@@ -7,17 +9,23 @@ func _ready():
 	%InputBox.position.y = (get_viewport().size.y / 4) * 3
 
 func _input(event):
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_key_pressed(KEY_ESCAPE):
 		%InputBox.hide()
 		%InputText.text = ""
+		%Timer.start()
 	
-	if Input.is_action_just_pressed("ui_accept"):
-		%InputBox.visible = !%InputBox.visible
+	if Input.is_key_pressed(KEY_ENTER):
+		if not enter_key_pressed:
+			%InputBox.visible = !%InputBox.visible
 
-		if %InputBox.visible == false:
-			_on_say_button_pressed()
-		else:
-			%Messages.show()
+			if %InputBox.visible == false:
+				_on_say_button_pressed()
+			else:
+				%Messages.show()
+
+			enter_key_pressed = true
+	else:
+		enter_key_pressed = false
 
 func _on_input_text_text_submitted(new_text):
 	_on_say_button_pressed()
