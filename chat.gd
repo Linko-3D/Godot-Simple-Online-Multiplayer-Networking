@@ -17,6 +17,7 @@ func _input(event):
 	if Input.is_key_pressed(KEY_ENTER):
 		if not enter_key_pressed:
 			%InputBox.visible = !%InputBox.visible
+			%Timer.stop()
 
 			if %InputBox.visible == false:
 				_on_say_button_pressed()
