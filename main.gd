@@ -40,7 +40,7 @@ func load_game():
 func _on_enter_button_pressed():
 	%Lobby.hide()
 	if not multiplayer.is_server():
-		add_player.rpc(multiplayer.get_unique_id())
+		add_player.rpc_id(1, multiplayer.get_unique_id())
 
 @rpc("any_peer") # Add "call_local" if you also want to spawn a player from the server
 func add_player(id):

@@ -63,7 +63,6 @@ text = "Join"
 
 [node name="Lobby" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -88,6 +87,11 @@ theme_override_constants/margin_bottom = 5
 [node name="VBoxContainer" type="VBoxContainer" parent="Lobby/MarginContainer"]
 layout_mode = 2
 alignment = 1
+
+[node name="Label" type="Label" parent="Lobby/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Lobby"
+horizontal_alignment = 1
 
 [node name="EnterButton" type="Button" parent="Lobby/MarginContainer/VBoxContainer"]
 layout_mode = 2
