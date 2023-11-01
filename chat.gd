@@ -14,7 +14,7 @@ func _input(event):
 		%InputText.text = ""
 		%Timer.start()
 	
-	if Input.is_key_pressed(KEY_ENTER):
+	if Input.is_key_pressed(KEY_ENTER) or Input.is_key_pressed(KEY_KP_ENTER):
 		if not enter_key_pressed:
 			%InputBox.visible = !%InputBox.visible
 			%Timer.stop()

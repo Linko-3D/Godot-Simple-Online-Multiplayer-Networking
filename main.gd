@@ -48,7 +48,6 @@ func add_player(id):
 	player_instance.name = str(id)
 	%SpawnPosition.add_child(player_instance)
 
-@rpc("any_peer")
 func remove_player(id):
 	if %SpawnPosition.get_node(str(id)):
 		%SpawnPosition.get_node(str(id)).queue_free()
