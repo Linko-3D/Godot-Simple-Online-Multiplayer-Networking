@@ -1,4 +1,4 @@
-extends Node
+extends CanvasLayer
 
 var enter_key_pressed = false
 
@@ -9,6 +9,9 @@ func _ready():
 	%InputBox.position.y = (get_viewport().size.y / 4) * 3
 
 func _input(event):
+	if not visible:
+		return
+
 	if Input.is_key_pressed(KEY_ESCAPE):
 		%InputBox.hide()
 		%InputText.text = ""

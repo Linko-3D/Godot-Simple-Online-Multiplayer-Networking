@@ -54,6 +54,7 @@ func remove_player(id):
 
 func server_offline():
 	%Menu.show()
+	%Chat.hide()
 	if %MapInstance.get_child(0):
 		%MapInstance.get_child(0).queue_free()
 
