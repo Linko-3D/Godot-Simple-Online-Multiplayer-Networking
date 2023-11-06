@@ -5,12 +5,12 @@ extends Node
 
 func _ready():
 	%Lobby.hide()
-	%IP.hide()
+	%Admin.hide()
 
 # Server
 func _on_host_button_pressed():
 	upnp_setup()
-	%IP.show()
+	%Admin.show()
 
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_server(9999)
