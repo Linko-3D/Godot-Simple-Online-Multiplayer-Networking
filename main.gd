@@ -3,13 +3,21 @@ extends Node
 @export var player : PackedScene
 @export var map : PackedScene
 
+var upnp = UPNP.new()
+
+var banned_ips = []
+
+func _process(delta):
+	%NumberConnected.text = str(multiplayer.get_peers().size())
+
 func _ready():
 	%Lobby.hide()
 	%Admin.hide()
+	upnp_setup()
+	
 
 # Server
 func _on_host_button_pressed():
-	upnp_setup()
 	%Admin.show()
 
 	var peer = ENetMultiplayerPeer.new()
@@ -32,6 +40,7 @@ func _on_join_button_pressed():
 func load_game():
 	%Chat.show()
 	%Menu.hide()
+	print()
 	%MapInstance.add_child(map.instantiate())
 
 	if not multiplayer.is_server():
@@ -40,10 +49,16 @@ func load_game():
 func _on_enter_button_pressed():
 	%Lobby.hide()
 	if not multiplayer.is_server():
-		add_player.rpc_id(1, multiplayer.get_unique_id())
+		add_player.rpc_id(1, multiplayer.get_unique_id(), upnp.query_external_address())
 
 @rpc("any_peer") # Add "call_local" if you also want to spawn a player from the server
-func add_player(id):
+func add_player(id, ip):
+	var player_ip = ip
+	
+	if player_ip in banned_ips:
+		print("Connection from " + player_ip + " rejected (banned).")
+		return
+		
 	var player_instance = player.instantiate()
 	player_instance.name = str(id)
 	%SpawnPosition.add_child(player_instance)
@@ -60,7 +75,6 @@ func server_offline():
 
 # Set up port mapping for online multiplayer functionality
 func upnp_setup():
-	var upnp = UPNP.new()
 	upnp.discover()
 	upnp.add_port_mapping(9999)
 	%DisplayPublicIP.text = "Server IP: " + upnp.query_external_address()
