@@ -14,7 +14,6 @@ func _ready():
 	%Lobby.hide()
 	%Admin.hide()
 	upnp_setup()
-	
 
 # Server
 func _on_host_button_pressed():
