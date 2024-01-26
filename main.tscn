@@ -150,6 +150,18 @@ text = "KICK"
 layout_mode = 2
 text = "Player"
 
+[node name="Label" type="Label" parent="Admin/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PlayersList" type="VBoxContainer" parent="Admin/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Admin/MarginContainer/VBoxContainer/PlayersList"]
+layout_mode = 2
+text = "AAA"
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player/player.tscn")
 spawn_path = NodePath("../SpawnPosition")
@@ -163,6 +175,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="PlayersConnected" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 40.0
 

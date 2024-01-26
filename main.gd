@@ -9,10 +9,14 @@ var banned_ips = []
 
 func _process(delta):
 	%NumberConnected.text = str(multiplayer.get_peers().size())
+	%PlayersList
+	if multiplayer.get_peers().size() > 0:
+		%Label.text = str(multiplayer.get_peers()[1])
 
 func _ready():
 	%Lobby.hide()
 	%Admin.hide()
+	%PlayersConnected.hide()
 	upnp_setup()
 
 # Server
@@ -38,6 +42,7 @@ func _on_join_button_pressed():
 
 func load_game():
 	%Chat.show()
+	%PlayersConnected.show()
 	%Menu.hide()
 	print()
 	%MapInstance.add_child(map.instantiate())
@@ -69,6 +74,8 @@ func remove_player(id):
 func server_offline():
 	%Menu.show()
 	%Chat.hide()
+	%Lobby.hide()
+	%PlayersConnected.hide()
 	if %MapInstance.get_child(0):
 		%MapInstance.get_child(0).queue_free()
 
