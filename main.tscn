@@ -139,28 +139,9 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="Admin/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Admin/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="Admin/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "KICK"
-
-[node name="Label" type="Label" parent="Admin/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Player"
-
-[node name="Label" type="Label" parent="Admin/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
 [node name="PlayersList" type="VBoxContainer" parent="Admin/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Label2" type="Label" parent="Admin/MarginContainer/VBoxContainer/PlayersList"]
-layout_mode = 2
-text = "AAA"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player/player.tscn")
@@ -168,7 +149,6 @@ spawn_path = NodePath("../SpawnPosition")
 
 [node name="Chat" parent="." instance=ExtResource("4_rr7el")]
 unique_name_in_owner = true
-visible = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 offset_right = 40.0

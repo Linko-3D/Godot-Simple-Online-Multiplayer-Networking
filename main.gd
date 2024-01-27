@@ -9,9 +9,25 @@ var banned_ips = []
 
 func _process(delta):
 	%NumberConnected.text = str(multiplayer.get_peers().size())
-	%PlayersList
-	if multiplayer.get_peers().size() > 0:
-		%Label.text = str(multiplayer.get_peers()[1])
+
+	print(%PlayersList.get_child_count())
+
+	if multiplayer.is_server():
+		if %PlayersList.get_child_count() != multiplayer.get_peers().size():
+			for i in range(%PlayersList.get_child_count()):
+				%PlayersList.get_child(i).queue_free()
+			
+			for i in range(multiplayer.get_peers().size()):
+				var line = HBoxContainer.new()
+				%PlayersList.add_child(line)
+				
+				var button = Button.new()
+				button.text = "KICK"
+				line.add_child(button)
+				
+				var label = Label.new()
+				label.text = str(multiplayer.get_peers()[i])
+				line.add_child(label)
 
 func _ready():
 	%Lobby.hide()

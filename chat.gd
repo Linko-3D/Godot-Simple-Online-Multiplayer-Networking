@@ -46,7 +46,6 @@ func send_message(message, playerName):
 	var label = Label.new()
 	label.text = playerName + ": " + message
 	%DisplayedMessages.add_child(label)
-
 	if %DisplayedMessages.get_child_count() > 7:
 		%DisplayedMessages.get_child(0).queue_free()
 
