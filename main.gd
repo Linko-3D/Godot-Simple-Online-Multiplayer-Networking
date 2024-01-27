@@ -21,9 +21,13 @@ func _process(delta):
 				var line = HBoxContainer.new()
 				%PlayersList.add_child(line)
 				
-				var button = Button.new()
-				button.text = "KICK"
-				line.add_child(button)
+				var kick_button = Button.new()
+				kick_button.text = "KICK"
+				line.add_child(kick_button)
+				
+				var pov_button = Button.new()
+				pov_button.text = "POV"
+				line.add_child(pov_button)
 				
 				var label = Label.new()
 				label.text = str(multiplayer.get_peers()[i])
