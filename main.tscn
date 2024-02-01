@@ -178,7 +178,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="PlayersConnected/MarginContainer/HBoxContainer"]
 layout_mode = 2
-text = "Players:"
+text = "Players connected:"
 
 [node name="NumberConnected" type="Label" parent="PlayersConnected/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
