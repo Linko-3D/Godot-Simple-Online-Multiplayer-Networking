@@ -35,14 +35,15 @@ func load_game():
 	%Menu.hide()
 	%MapInstance.add_child(map.instantiate())
 
-	if not multiplayer.is_server(): # Remove this condition to spawn a player from the server
+	if not multiplayer.is_server():
 		%Lobby.show()
 
 func _on_enter_button_pressed():
 	%Lobby.hide()
-	add_player.rpc(multiplayer.get_unique_id())
+	if not multiplayer.is_server():
+		add_player.rpc_id(1, multiplayer.get_unique_id())
 
-@rpc("any_peer", "call_local")
+@rpc("any_peer") # Add "call_local" if you also want to spawn a player from the server
 func add_player(id):
 	var player_instance = player.instantiate()
 	player_instance.name = str(id)

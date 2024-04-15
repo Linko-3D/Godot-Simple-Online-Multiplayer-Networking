@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsm0u4o7lg7sr"]
+[gd_scene load_steps=4 format=3 uid="uid://dsm0u4o7lg7sr"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_u4j5f"]
 [ext_resource type="Texture2D" uid="uid://df0ooqpnic0cc" path="res://icon.svg" id="2_awnrn"]
-[ext_resource type="PackedScene" uid="uid://t53r7amqli5a" path="res://player/cam_iso.tscn" id="3_nb3dj"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eswml"]
 properties/0/path = NodePath(".:position")
@@ -22,9 +21,5 @@ color = Color(0, 0, 0, 1)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_awnrn")
 
-[node name="AudioListener2D" type="AudioListener2D" parent="."]
-
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_eswml")
-
-[node name="CameraIsometric" parent="." instance=ExtResource("3_nb3dj")]
