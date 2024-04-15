@@ -21,5 +21,7 @@ color = Color(0, 0, 0, 1)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_awnrn")
 
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_eswml")
