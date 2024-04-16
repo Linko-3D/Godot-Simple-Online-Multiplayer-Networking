@@ -7,11 +7,24 @@
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath("DisplayUsername:text")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_u4j5f")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
+
+[node name="DisplayUsername" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 26.0
+text = "Anonymous"
+horizontal_alignment = 1
+uppercase = true
 
 [node name="DisplayAuthority" type="ColorRect" parent="."]
 offset_left = -70.0

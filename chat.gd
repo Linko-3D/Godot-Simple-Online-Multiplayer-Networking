@@ -38,13 +38,13 @@ func _on_say_button_pressed():
 	%InputBox.hide()
 	%Timer.start()
 	if %InputText.text != "":
-		send_message.rpc(%InputText.text, str(multiplayer.get_unique_id()))
+		send_message.rpc(%InputText.text, GLOBAL.username)
 		%InputText.text = ""
 
 @rpc("call_local", "any_peer")
-func send_message(message, playerName):
+func send_message(message, username):
 	var label = Label.new()
-	label.text = playerName + ": " + message
+	label.text = username + ": " + message
 	%DisplayedMessages.add_child(label)
 
 	if %DisplayedMessages.get_child_count() > 7:

@@ -22,6 +22,8 @@ func _input(event: InputEvent):
 			%Lobby.show()
 
 func _process(delta):
+	GLOBAL.username = %SetUsername.text
+
 	if %Lobby.visible:
 		%EnterButton.visible = !spawned
 		%ReturnButton.visible = spawned
