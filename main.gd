@@ -3,24 +3,31 @@ extends Node
 @export var player : PackedScene
 @export var map : PackedScene
 
+var spawned = false
+
 # Set up port mapping for online multiplayer functionality
 func _ready():
 	%Lobby.hide()
-	%DisplayPublicIP.hide()
+	%Admin.hide()
 
 	var upnp = UPNP.new()
 	upnp.discover()
 	upnp.add_port_mapping(9999)
 	%DisplayPublicIP.text = "Server IP: " + upnp.query_external_address()
-	
+
 func _input(event: InputEvent):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if not multiplayer.is_server():
 			%Lobby.show()
 
+func _process(delta):
+	if %Lobby.visible:
+		%EnterButton.visible = !spawned
+		%ReturnButton.visible = spawned
+
 # Dedicated server (it does not spawn a player)
 func _on_host_button_pressed():
-	%DisplayPublicIP.show()
+	%Admin.show()
 	
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_server(9999)
@@ -50,10 +57,15 @@ func _on_enter_button_pressed():
 	%Lobby.hide()
 	if not multiplayer.is_server():
 		add_player.rpc_id(1, multiplayer.get_unique_id())
+		spawned = true
+
+func _on_return_button_pressed() -> void:
+	%Lobby.hide()
 
 func _on_spectate_button_pressed():
 	%Lobby.hide()
 	remove_player.rpc_id(1, multiplayer.get_unique_id())
+	spawned = false
 
 func _on_quit_button_pressed():
 	get_tree().quit()
@@ -79,3 +91,6 @@ func server_offline():
 	%Lobby.hide()
 	if %MapInstance.get_child(0):
 		%MapInstance.get_child(0).queue_free()
+
+
+

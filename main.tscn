@@ -93,8 +93,14 @@ text = "Lobby"
 horizontal_alignment = 1
 
 [node name="EnterButton" type="Button" parent="Lobby/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Enter game"
+
+[node name="ReturnButton" type="Button" parent="Lobby/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Return"
 
 [node name="SpectateButton" type="Button" parent="Lobby/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -107,16 +113,34 @@ layout_mode = 2
 layout_mode = 2
 text = "Quit game"
 
-[node name="DisplayPublicIP" type="Label" parent="."]
+[node name="Admin" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -38.5
-offset_right = 38.5
-offset_bottom = 23.0
-grow_horizontal = 2
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -79.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="Admin"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Admin/MarginContainer"]
+layout_mode = 2
+
+[node name="DisplayPublicIP" type="Label" parent="Admin/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Admin/MarginContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player/player.tscn")
@@ -126,5 +150,6 @@ spawn_path = NodePath("../SpawnPosition")
 [connection signal="text_submitted" from="Menu/MarginContainer/VBoxContainer/To" to="." method="_on_to_text_submitted"]
 [connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="Lobby/MarginContainer/VBoxContainer/EnterButton" to="." method="_on_enter_button_pressed"]
+[connection signal="pressed" from="Lobby/MarginContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="Lobby/MarginContainer/VBoxContainer/SpectateButton" to="." method="_on_spectate_button_pressed"]
 [connection signal="pressed" from="Lobby/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
