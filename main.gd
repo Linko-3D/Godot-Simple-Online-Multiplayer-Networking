@@ -82,11 +82,6 @@ func add_player(id):
 	%SpawnPosition.add_child(player_instance)
 
 @rpc("any_peer")
-func despawn_player(id):
-	if %SpawnPosition.get_node(str(id)):
-		%SpawnPosition.get_node(str(id)).queue_free()
-		
-@rpc("any_peer")
 func remove_player(id):
 	if %SpawnPosition.get_node(str(id)):
 		%SpawnPosition.get_node(str(id)).queue_free()
@@ -96,6 +91,3 @@ func server_offline():
 	%Lobby.hide()
 	if %MapInstance.get_child(0):
 		%MapInstance.get_child(0).queue_free()
-
-
-
