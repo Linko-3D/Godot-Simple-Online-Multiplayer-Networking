@@ -20,6 +20,11 @@ func _input(event: InputEvent):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if not multiplayer.is_server():
 			%Lobby.show()
+	
+	if Input.is_key_pressed(KEY_TAB):
+		%Leaderboard.show()
+	else:
+		%Leaderboard.hide()
 
 func _process(delta):
 	GLOBAL.username = %SetUsername.text
