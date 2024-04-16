@@ -13,10 +13,8 @@ map = ExtResource("3_y0mr2")
 [node name="MapInstance" type="Node" parent="."]
 unique_name_in_owner = true
 
-[node name="SpawnPosition" type="Node2D" parent="."]
+[node name="SpawnPosition" type="Node" parent="."]
 unique_name_in_owner = true
-y_sort_enabled = true
-position = Vector2(200, 150)
 
 [node name="Menu" type="PanelContainer" parent="."]
 unique_name_in_owner = true
