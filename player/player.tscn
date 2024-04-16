@@ -18,8 +18,8 @@ metadata/_edit_lock_ = true
 
 [node name="DisplayUsername" type="Label3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.660868, 0)
-pixel_size = 0.002
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+pixel_size = 0.001
 billboard = 1
 fixed_size = true
 text = "Anonymous"
@@ -27,17 +27,16 @@ uppercase = true
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 
-[node name="AngleY" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="AngleX" type="Node3D" parent="AngleY"]
+[node name="AngleX" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.816138, 0.577858, 0, -0.577858, 0.816138, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="AngleY/AngleX"]
+[node name="Camera3D" type="Camera3D" parent="AngleX"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 5.96046e-08, 1, 0, 0, 21.4826)
 projection = 1
 size = 10.0
+
+[node name="AngleY" type="Node3D" parent="."]
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

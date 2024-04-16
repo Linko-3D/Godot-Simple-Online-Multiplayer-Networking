@@ -7,6 +7,10 @@ const JUMP_VELOCITY = 4.5
 func _ready():
 	set_multiplayer_authority(name.to_int())
 	%Camera3D.current = is_multiplayer_authority()
+	
+	var tween = get_tree().create_tween().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.tween_property($CSGSphere3D, "scale", Vector3.ZERO, 0)
+	tween.tween_property($CSGSphere3D, "scale", Vector3.ONE, 0.5)
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
