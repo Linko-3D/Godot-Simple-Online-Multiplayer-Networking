@@ -58,13 +58,19 @@ func load_game():
 	if not multiplayer.is_server():
 		%Lobby.show()
 
+func _on_set_username_text_submitted(new_text: String) -> void:
+	if %EnterButton.visible:
+		_on_enter_button_pressed()
+	else:
+		_on_return_button_pressed()
+
 func _on_enter_button_pressed():
 	%Lobby.hide()
 	if not multiplayer.is_server():
 		add_player.rpc_id(1, multiplayer.get_unique_id())
 		spawned = true
 
-func _on_return_button_pressed() -> void:
+func _on_return_button_pressed():
 	%Lobby.hide()
 
 func _on_spectate_button_pressed():

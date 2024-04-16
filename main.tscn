@@ -159,6 +159,7 @@ spawn_path = NodePath("../SpawnPosition")
 [connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="text_submitted" from="Menu/MarginContainer/VBoxContainer/To" to="." method="_on_to_text_submitted"]
 [connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="text_submitted" from="Lobby/MarginContainer/VBoxContainer/SetUsername" to="." method="_on_set_username_text_submitted"]
 [connection signal="pressed" from="Lobby/MarginContainer/VBoxContainer/EnterButton" to="." method="_on_enter_button_pressed"]
 [connection signal="pressed" from="Lobby/MarginContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="Lobby/MarginContainer/VBoxContainer/SpectateButton" to="." method="_on_spectate_button_pressed"]
