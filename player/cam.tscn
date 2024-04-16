@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2yj081q3xfd6"]
+
+[ext_resource type="Script" path="res://cam.gd" id="1_xkb4g"]
+
+[node name="RootCameraIso" type="Node3D"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+script = ExtResource("1_xkb4g")
+
+[node name="AngleY" type="Node3D" parent="."]
+
+[node name="AngleX" type="Node3D" parent="AngleY"]
+transform = Transform3D(1, 0, 0, 0, 0.816138, 0.577858, 0, -0.577858, 0.816138, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="AngleY/AngleX"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 5.96046e-08, 1, 0, 0, 21.4826)
+projection = 1
+size = 10.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
