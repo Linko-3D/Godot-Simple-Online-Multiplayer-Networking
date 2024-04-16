@@ -9,6 +9,7 @@ var spawned = false
 func _ready():
 	%Lobby.hide()
 	%Admin.hide()
+	%Chat.hide()
 
 	var upnp = UPNP.new()
 	upnp.discover()
@@ -48,6 +49,8 @@ func _on_join_button_pressed():
 
 func load_game():
 	%Menu.hide()
+	%Chat.show()
+
 	%MapInstance.add_child(map.instantiate())
 
 	if not multiplayer.is_server():

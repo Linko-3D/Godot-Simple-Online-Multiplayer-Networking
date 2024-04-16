@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cs7kdpemhirwt"]
+[gd_scene load_steps=5 format=3 uid="uid://cs7kdpemhirwt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_qmj53"]
 [ext_resource type="PackedScene" uid="uid://dsm0u4o7lg7sr" path="res://player/player.tscn" id="2_mm035"]
 [ext_resource type="PackedScene" uid="uid://clvp4cain5340" path="res://maps/map.tscn" id="3_y0mr2"]
+[ext_resource type="PackedScene" uid="uid://bw51fy723gv0q" path="res://chat.tscn" id="4_j7b2k"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_qmj53")
@@ -141,6 +142,9 @@ horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="Admin/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="Chat" parent="." instance=ExtResource("4_j7b2k")]
+unique_name_in_owner = true
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player/player.tscn")
