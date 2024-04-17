@@ -24,9 +24,21 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath("LandingAnimation/Camera3D:rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath("Username:text")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_c2o3v")
+
+[node name="Username" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+pixel_size = 0.001
+billboard = 1
+fixed_size = true
+text = "Anonymous"
+uppercase = true
 
 [node name="CollisionShape3d" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_x2txe")

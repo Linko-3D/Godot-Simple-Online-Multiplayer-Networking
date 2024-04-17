@@ -67,7 +67,6 @@ func load_game():
 
 	if not multiplayer.is_server():
 		%Lobby.show()
-	print("a")
 
 func _on_set_username_text_submitted(new_text: String):
 	if %EnterButton.visible:
