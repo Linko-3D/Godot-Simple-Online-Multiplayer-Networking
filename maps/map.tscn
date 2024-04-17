@@ -2,18 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://d2yj081q3xfd6" path="res://player/cam.tscn" id="1_3prr4"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1ueev"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_bx6v0"]
 
 [sub_resource type="Sky" id="Sky_g82b8"]
-sky_material = SubResource("ProceduralSkyMaterial_1ueev")
+sky_material = SubResource("PhysicalSkyMaterial_bx6v0")
 
 [sub_resource type="Environment" id="Environment_x46e3"]
 background_mode = 2
 sky = SubResource("Sky_g82b8")
 tonemap_mode = 2
+tonemap_white = 16.0
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
 glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
 
 [node name="Map" type="Node3D"]
 metadata/_edit_lock_ = true
@@ -22,7 +26,7 @@ metadata/_edit_lock_ = true
 environment = SubResource("Environment_x46e3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.496842, 0.161106, 0.852756, 0.709327, 0.641519, 0.292077, -0.500004, 0.749999, -0.43301, 0, 2.63204, 0)
 shadow_enabled = true
 
 [node name="ColorRect" type="ColorRect" parent="."]

@@ -18,10 +18,13 @@ func _ready():
 	set_multiplayer_authority(name.to_int())
 	%Camera3D.current = is_multiplayer_authority()
 	%Crosshair.visible = is_multiplayer_authority()
+	$LandingAnimation/Camera3D/Flashlight.has_authority = is_multiplayer_authority()
 
 func _input(event):
 	if not is_multiplayer_authority(): return
-	
+
+	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: return
+
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x / 2000)
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjnryc74hisxn"]
+[gd_scene load_steps=10 format=3 uid="uid://cjnryc74hisxn"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_c2o3v"]
 [ext_resource type="AudioStream" uid="uid://dxfmyn7wykrho" path="res://player/land.wav" id="2_7uo5h"]
 [ext_resource type="AudioStream" uid="uid://3uajhf4si0nw" path="res://player/jump.wav" id="2_jv1va"]
 [ext_resource type="PackedScene" uid="uid://bbeockvrkx4ls" path="res://player/weapons/scene.gltf" id="2_sxqj8"]
 [ext_resource type="AudioStream" uid="uid://cnfmape1h47i2" path="res://player/footstep.wav" id="3_au32c"]
+[ext_resource type="PackedScene" uid="uid://4k8374vs107s" path="res://player/flashlight/flashlight.tscn" id="3_gjcyy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x2txe"]
 radius = 0.3
@@ -56,6 +57,8 @@ unique_name_in_owner = true
 
 [node name="Sketchfab_Scene" parent="LandingAnimation/Camera3D" instance=ExtResource("2_sxqj8")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.128408, -0.167478, -0.291088)
+
+[node name="Flashlight" parent="LandingAnimation/Camera3D" instance=ExtResource("3_gjcyy")]
 
 [node name="Crosshair" type="Control" parent="."]
 unique_name_in_owner = true
