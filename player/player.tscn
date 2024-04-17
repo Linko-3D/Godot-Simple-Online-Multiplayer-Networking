@@ -1,45 +1,128 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsm0u4o7lg7sr"]
+[gd_scene load_steps=9 format=3 uid="uid://cjnryc74hisxn"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_u4j5f"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_c2o3v"]
+[ext_resource type="AudioStream" uid="uid://dxfmyn7wykrho" path="res://player/land.wav" id="2_7uo5h"]
+[ext_resource type="AudioStream" uid="uid://3uajhf4si0nw" path="res://player/jump.wav" id="2_jv1va"]
+[ext_resource type="PackedScene" uid="uid://bbeockvrkx4ls" path="res://player/weapons/scene.gltf" id="2_sxqj8"]
+[ext_resource type="AudioStream" uid="uid://cnfmape1h47i2" path="res://player/footstep.wav" id="3_au32c"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eswml"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x2txe"]
+radius = 0.3
+height = 1.7
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mf6nl"]
+radius = 0.3
+height = 1.7
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5na0g"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath("DisplayUsername:text")
+properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath("LandingAnimation/Camera3D:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [node name="Player" type="CharacterBody3D"]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
-script = ExtResource("1_u4j5f")
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
+script = ExtResource("1_c2o3v")
 
-[node name="DisplayUsername" type="Label3D" parent="."]
+[node name="CollisionShape3d" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_x2txe")
+
+[node name="MeshInstance3d" type="MeshInstance3D" parent="."]
+gi_mode = 0
+mesh = SubResource("CapsuleMesh_mf6nl")
+
+[node name="LandingAnimation" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-pixel_size = 0.001
-billboard = 1
-fixed_size = true
-text = "Anonymous"
-uppercase = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.12)
 
-[node name="AudioListener2D" type="AudioListener2D" parent="."]
-
-[node name="AngleX" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.816138, 0.577858, 0, -0.577858, 0.816138, 0, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="AngleX"]
+[node name="Camera3D" type="Camera3D" parent="LandingAnimation"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 5.96046e-08, 1, 0, 0, 21.4826)
-projection = 1
-size = 10.0
 
-[node name="AngleY" type="Node3D" parent="."]
+[node name="Sketchfab_Scene" parent="LandingAnimation/Camera3D" instance=ExtResource("2_sxqj8")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.128408, -0.167478, -0.291088)
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+[node name="Crosshair" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect1" type="ColorRect" parent="Crosshair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -1.0
+offset_right = 3.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="ColorRect3" type="ColorRect" parent="Crosshair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="ColorRect4" type="ColorRect" parent="Crosshair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="ColorRect2" type="ColorRect" parent="Crosshair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jv1va")
+
+[node name="LandSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_7uo5h")
+volume_db = -5.0
+
+[node name="FootstepSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_au32c")
+volume_db = -15.0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_eswml")
+replication_config = SubResource("SceneReplicationConfig_5na0g")

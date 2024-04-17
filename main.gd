@@ -19,7 +19,12 @@ func _ready():
 func _input(event: InputEvent):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if not multiplayer.is_server():
-			%Lobby.show()
+			if not %Lobby.visible:
+				%Lobby.show()
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			else:
+				%Lobby.hide()
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	if Input.is_key_pressed(KEY_TAB):
 		%Leaderboard.show()
@@ -75,14 +80,17 @@ func _on_enter_button_pressed():
 	if not multiplayer.is_server():
 		add_player.rpc_id(1, multiplayer.get_unique_id())
 		spawned = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_return_button_pressed():
 	%Lobby.hide()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_spectate_button_pressed():
 	%Lobby.hide()
 	remove_player.rpc_id(1, multiplayer.get_unique_id())
 	spawned = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_quit_button_pressed():
 	get_tree().quit()

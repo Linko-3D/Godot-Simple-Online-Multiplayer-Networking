@@ -35,6 +35,8 @@ grow_vertical = 2
 color = Color(0.788235, 0.760784, 0.678431, 1)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.35116, 0)
+use_collision = true
 size = Vector3(10, 0.001, 10)
 
 [node name="RootCameraIso" parent="." instance=ExtResource("1_3prr4")]

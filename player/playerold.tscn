@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsm0u4o7lg7sr"]
+
+[ext_resource type="Script" path="res://player/playerold.gd" id="1_u4j5f"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eswml"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("DisplayUsername:text")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+script = ExtResource("1_u4j5f")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="DisplayUsername" type="Label3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+pixel_size = 0.001
+billboard = 1
+fixed_size = true
+text = "Anonymous"
+uppercase = true
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="AngleY" type="Node3D" parent="."]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_eswml")
+
+[node name="RootCameraIso" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="AngleX" type="Node3D" parent="RootCameraIso"]
+transform = Transform3D(1, 0, 0, 0, 0.816138, 0.577858, 0, -0.577858, 0.816138, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="RootCameraIso/AngleX"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 5.96046e-08, 1, 0, 0, 21.4826)
+projection = 1
+size = 10.0
