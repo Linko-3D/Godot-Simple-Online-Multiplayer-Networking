@@ -37,6 +37,11 @@ func _process(delta):
 	if %Lobby.visible:
 		%EnterButton.visible = !spawned
 		%ReturnButton.visible = spawned
+	
+	if not %Lobby.visible:
+		%Chat.can_chat = true
+	else:
+		%Chat.can_chat = false
 
 # Dedicated server (it does not spawn a player)
 func _on_host_button_pressed():

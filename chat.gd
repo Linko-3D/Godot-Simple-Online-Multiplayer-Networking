@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var enter_key_pressed = false
+var can_chat = false
 
 func _ready():
 	%InputBox.hide()
@@ -18,6 +19,7 @@ func _input(event):
 		%Timer.start()
 	
 	if Input.is_key_pressed(KEY_ENTER) or Input.is_key_pressed(KEY_KP_ENTER):
+		if not can_chat: return
 		if not enter_key_pressed:
 			%InputBox.visible = !%InputBox.visible
 			%Timer.stop()

@@ -36,6 +36,9 @@ func _physics_process(delta):
 	
 	%Username.text = GLOBAL.username
 	
+	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: return
+	
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 		has_landed = false

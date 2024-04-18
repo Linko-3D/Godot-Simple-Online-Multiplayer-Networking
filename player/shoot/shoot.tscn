@@ -1,33 +1,14 @@
-[gd_scene format=3 uid="uid://sjo4xw8bwucs"]
+[gd_scene load_steps=3 format=3 uid="uid://sjo4xw8bwucs"]
+
+[ext_resource type="Script" path="res://player/shoot/shoot.gd" id="1_yqom3"]
+[ext_resource type="ArrayMesh" uid="uid://c0cdb3fbavt53" path="res://player/shoot/AK-47.obj" id="2_w1q1v"]
 
 [node name="Shoot" type="Node3D"]
+script = ExtResource("1_yqom3")
 
-[node name="HUD" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.1, -0.2)
 
-[node name="HealthBackgroundColor" type="ColorRect" parent="HUD"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 90.0
-offset_top = -199.0
-offset_right = 585.0
-offset_bottom = -30.0
-grow_vertical = 0
-color = Color(0.25098, 0, 0, 0)
-
-[node name="AmmoBackgroundColor2" type="ColorRect" parent="HUD"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Ak-47" type="MeshInstance3D" parent="Node3D"]
+mesh = ExtResource("2_w1q1v")
+skeleton = NodePath("../..")
