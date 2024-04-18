@@ -19,6 +19,7 @@ func _ready():
 	%Camera3D.current = is_multiplayer_authority()
 	%Crosshair.visible = is_multiplayer_authority()
 	$LandingAnimation/Camera3D/Flashlight.has_authority = is_multiplayer_authority()
+	$LandingAnimation/Camera3D/Shoot.has_authority = is_multiplayer_authority()
 
 func _input(event):
 	if not is_multiplayer_authority(): return
