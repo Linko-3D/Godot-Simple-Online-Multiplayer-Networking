@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://sjo4xw8bwucs"]
+[gd_scene load_steps=5 format=3 uid="uid://sjo4xw8bwucs"]
 
 [ext_resource type="Script" path="res://player/shoot/shoot.gd" id="1_yqom3"]
+[ext_resource type="PackedScene" uid="uid://c8hakkpfu83o0" path="res://player/shoot/impact.tscn" id="2_3xwy6"]
 [ext_resource type="ArrayMesh" uid="uid://c0cdb3fbavt53" path="res://player/shoot/AK-47.obj" id="2_w1q1v"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jebl7"]
@@ -10,6 +11,11 @@ properties/0/replication_mode = 1
 
 [node name="Shoot" type="Node3D"]
 script = ExtResource("1_yqom3")
+impact = ExtResource("2_3xwy6")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -1000)
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.1, -0.2)
@@ -20,6 +26,11 @@ unique_name_in_owner = true
 [node name="Ak-47" type="MeshInstance3D" parent="Node3D/Sway"]
 mesh = ExtResource("2_w1q1v")
 skeleton = NodePath("../../..")
+
+[node name="FireRateTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+one_shot = true
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_jebl7")

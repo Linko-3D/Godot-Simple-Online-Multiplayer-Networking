@@ -23,6 +23,7 @@ GLOBAL="*res://GLOBAL.gd"
 
 window/size/viewport_width=768
 window/size/viewport_height=432
+window/size/resizable=false
 
 [input]
 
