@@ -5,9 +5,12 @@
 [ext_resource type="ArrayMesh" uid="uid://c0cdb3fbavt53" path="res://player/shoot/AK-47.obj" id="2_w1q1v"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jebl7"]
-properties/0/path = NodePath("Node3D/Sway:rotation")
+properties/0/path = NodePath("Node3D/Sway/Reload:rotation")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath("Node3D/Sway:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Shoot" type="Node3D"]
 script = ExtResource("1_yqom3")
@@ -23,9 +26,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.1, -0.2)
 [node name="Sway" type="Node3D" parent="Node3D"]
 unique_name_in_owner = true
 
-[node name="Ak-47" type="MeshInstance3D" parent="Node3D/Sway"]
+[node name="Reload" type="Node3D" parent="Node3D/Sway"]
+unique_name_in_owner = true
+
+[node name="Ak-47" type="MeshInstance3D" parent="Node3D/Sway/Reload"]
 mesh = ExtResource("2_w1q1v")
-skeleton = NodePath("../../..")
+skeleton = NodePath("../../../..")
 
 [node name="FireRateTimer" type="Timer" parent="."]
 unique_name_in_owner = true
