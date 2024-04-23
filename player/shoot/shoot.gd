@@ -26,12 +26,12 @@ func _process(delta: float) -> void:
 
 	print(mouse_relative_x)
 	%Sway.position.x = lerp(%Sway.position.x, -mouse_relative_x / 15000.0, 20 * delta)
-	%Sway.position.y = lerp(%Sway.position.y, mouse_relative_y / 15000.0, 20 * delta)
+	%Sway.position.y = lerp(%Sway.position.y, mouse_relative_y / 20000.0, 20 * delta)
 
 
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.get_joy_axis(0, 7) >= 0.5:
 		if %FireRateTimer.is_stopped():
-			shoot.rpc()
+			shoot.rpc(randf_range(0.95, 1.05))
 			%FireRateTimer.start()
 
 	if Input.is_key_pressed(KEY_R) or Input.is_joy_button_pressed(0, JOY_BUTTON_Y):
@@ -40,7 +40,10 @@ func _process(delta: float) -> void:
 		tween.tween_property(%Reload, "rotation_degrees:x", 360, 1)
 		#$ReloadTween.interpolate_property(weapon, "rotation_degrees:x", 0, 360, 1, Tween.TRANS_BACK, Tween.EASE_IN_OUT, 0)
 @rpc("call_local")
-func shoot():
+func shoot(pitch):
+	$RifleShootAudio.play()
+	$RifleShootAudio.pitch_scale = pitch
+	
 	if not %RayCast3D.is_colliding(): return
 	var a = impact.instantiate()
 	get_tree().get_root().add_child(a)
