@@ -59,6 +59,9 @@ unique_name_in_owner = true
 
 [node name="Shoot" parent="LandingAnimation/Camera3D" instance=ExtResource("4_kj5d2")]
 
+[node name="AudioListener3D" type="AudioListener3D" parent="LandingAnimation/Camera3D"]
+unique_name_in_owner = true
+
 [node name="Crosshair" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3

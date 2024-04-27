@@ -16,6 +16,7 @@ properties/1/replication_mode = 1
 [node name="Shoot" type="Node3D"]
 script = ExtResource("1_yqom3")
 impact = ExtResource("2_3xwy6")
+rifle_shoot_sound = ExtResource("4_0tb65")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 unique_name_in_owner = true

@@ -18,6 +18,7 @@ func _ready():
 	set_multiplayer_authority(name.to_int())
 	%Camera3D.current = is_multiplayer_authority()
 	%Crosshair.visible = is_multiplayer_authority()
+	%AudioListener3D.current = is_multiplayer_authority()
 	$LandingAnimation/Camera3D/Flashlight.has_authority = is_multiplayer_authority()
 	$LandingAnimation/Camera3D/Shoot.has_authority = is_multiplayer_authority()
 
@@ -73,7 +74,6 @@ func _physics_process(delta):
 				jump_key_pressed = true
 		else:
 			jump_key_pressed = false
-		
 
 
 	if is_on_floor():
