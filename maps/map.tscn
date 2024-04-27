@@ -26,7 +26,7 @@ metadata/_edit_lock_ = true
 environment = SubResource("Environment_x46e3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.158232, 0.258874, -0.952863, 0.709327, 0.641519, 0.292078, 0.686891, -0.722107, -0.0821174, 0, 2.63204, 0)
+transform = Transform3D(0.588859, 0.250539, -0.768424, -0.0873865, 0.964905, 0.247634, 0.803498, -0.0786716, 0.590086, 0, 2.63204, 0)
 shadow_enabled = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -44,3 +44,8 @@ use_collision = true
 size = Vector3(15, 0.001, 15)
 
 [node name="RootCameraIso" parent="." instance=ExtResource("1_3prr4")]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.24389, 0.440796, -5.36314)
+use_collision = true
+size = Vector3(6.84927, 3.02081, 0.353149)

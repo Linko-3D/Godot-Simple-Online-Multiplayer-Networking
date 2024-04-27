@@ -67,6 +67,11 @@ func shoot():
 	var impact_instance = impact.instantiate()
 	get_tree().get_root().add_child(impact_instance)
 	impact_instance.position = %RayCast3D.get_collision_point()
+	impact_instance.look_at(%RayCast3D.get_collision_point() - %RayCast3D.get_collision_normal(), Vector3.UP)
+
+#impact_instance.global_transform.origin = $BulletSpread/RayCast.get_collision_point()
+#impact_instance.look_at($BulletSpread/RayCast.get_collision_point() - $BulletSpread/RayCast.get_collision_normal(), Vector3.UP)
+	
 
 func play_sound(sound):
 	var audio_node = AudioStreamPlayer.new()
