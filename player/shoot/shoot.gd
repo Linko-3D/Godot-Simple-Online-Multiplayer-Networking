@@ -61,6 +61,7 @@ func _process(delta: float) -> void:
 
 @rpc("call_local")
 func shoot():
+	shoot_animation()
 	play_sound(rifle_shoot_sound)
 	
 	if not %RayCast3D.is_colliding(): return
@@ -79,3 +80,48 @@ func play_sound(sound):
 	audio_node.stream = rifle_shoot_sound
 	audio_node.pitch_scale = randf_range(0.95, 1.05)
 	audio_node.play()
+
+func shoot_animation():
+	var tween = get_tree().create_tween()
+	var value = randf_range(0.8, 1)
+	tween.tween_property(%MuzzleFlash, "light_energy", value, 0)
+	tween.tween_property(%MuzzleFlash, "light_energy", 0, 0.02)
+	
+	
+	pass
+
+#func shoot_animation():
+	#randomize()
+	#var value = rand_range(0.8, 1)
+	#$ShootTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon/OmniLight, "light_energy", 0, value, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
+	#$ShootTween.interpolate_property($Position3D/SwitchAndAttack/Bobbing/LookAtLerp/Sway/Weapon/OmniLight, "light_energy", value, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.05)
+	#
+	#value = rand_range(0.035, 0.045)
+	#$ShootTween.interpolate_property(weapon, "translation:z", 0, value, 0.1, Tween.TRANS_SINE, Tween.EASE_OUT)
+	#$ShootTween.interpolate_property(weapon, "translation:z", value, 0, 0.15, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.1)
+	#
+	#value = rand_range(-0.005, 0.005)
+	#$ShootTween.interpolate_property(weapon, "translation:x", 0, value, 0.1, Tween.TRANS_SINE, Tween.EASE_OUT)
+	#$ShootTween.interpolate_property(weapon, "translation:x",value, 0, 0.15, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.1)
+	#
+	#value = rand_range(0.005, 0.015)
+	#$ShootTween.interpolate_property(weapon, "translation:y", 0, value, 0.075, Tween.TRANS_SINE, Tween.EASE_OUT)
+	#$ShootTween.interpolate_property(weapon, "translation:y", value, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.075)
+	#
+	#value = rand_range(-1.5, -0.5)
+	#$ShootTween.interpolate_property(weapon, "rotation_degrees:x", 0, value, 0.1, Tween.TRANS_SINE, Tween.EASE_OUT)
+	#$ShootTween.interpolate_property(weapon, "rotation_degrees:x", value, 0, 0.15, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.1)
+	#
+	#value = rand_range(-1, 1)
+	#$ShootTween.interpolate_property(weapon, "rotation_degrees:z", 0, value, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
+	#$ShootTween.interpolate_property(weapon, "rotation_degrees:z", value, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.05)
+	#$ShootTween.interpolate_property(weapon, "rotation_degrees:z", 0, -value, 0.075, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.1)
+	#$ShootTween.interpolate_property(weapon, "rotation_degrees:z", -value, 0, 0.075, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.175)
+	#
+	#value = rand_range(0.5, 1.5)
+	#$ShootTween.interpolate_property(camera, "rotation_degrees:x", 0, 1, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
+	#$ShootTween.interpolate_property(camera, "rotation_degrees:x", 1, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.05)
+	#value = rand_range(-1, 1)
+	#$ShootTween.interpolate_property(camera, "rotation_degrees:y", 0, value, 0.05, Tween.TRANS_SINE, Tween.EASE_OUT)
+	#$ShootTween.interpolate_property(camera, "rotation_degrees:y", value, 0, 0.05, Tween.TRANS_SINE, Tween.EASE_IN_OUT, 0.05)
+	#$ShootTween.start()
