@@ -28,6 +28,7 @@ func _input(event):
 				_on_say_button_pressed()
 			else:
 				%Messages.show()
+				%InputText.grab_focus()
 
 			enter_key_pressed = true
 	else:

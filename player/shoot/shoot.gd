@@ -85,6 +85,11 @@ func shoot_animation():
 	var muzzle_flash_tween = get_tree().create_tween()
 	muzzle_flash_tween.tween_property(%MuzzleFlash, "light_energy", randf_range(0.8, 1), 0)
 	muzzle_flash_tween.tween_property(%MuzzleFlash, "light_energy", 0, 0.02)
+	
+	var weapon_animation_tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
+	weapon_animation_tween.tween_property(%Weapon, "position:z", randf_range(0.035, 0.045), 0.1)
+	weapon_animation_tween.tween_property(%Weapon, "position:z", 0, 0.15)
+	
 
 #func shoot_animation():
 	#randomize()

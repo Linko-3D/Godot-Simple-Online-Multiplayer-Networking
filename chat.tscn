@@ -48,11 +48,17 @@ theme_override_constants/margin_bottom = 5
 [node name="HBoxContainer" type="HBoxContainer" parent="InputBox/MarginContainer"]
 layout_mode = 2
 
-[node name="InputText" type="LineEdit" parent="InputBox/MarginContainer/HBoxContainer"]
+[node name="AAA" type="LineEdit" parent="InputBox/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(500, 35)
 layout_mode = 2
 caret_blink = true
+
+[node name="InputText" type="LineEdit" parent="InputBox/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
 
 [node name="SayButton" type="Button" parent="InputBox/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
@@ -64,6 +70,6 @@ unique_name_in_owner = true
 wait_time = 3.0
 one_shot = true
 
-[connection signal="text_submitted" from="InputBox/MarginContainer/HBoxContainer/InputText" to="." method="_on_input_text_text_submitted"]
+[connection signal="text_submitted" from="InputBox/MarginContainer/HBoxContainer/AAA" to="." method="_on_input_text_text_submitted"]
 [connection signal="pressed" from="InputBox/MarginContainer/HBoxContainer/SayButton" to="." method="_on_say_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
