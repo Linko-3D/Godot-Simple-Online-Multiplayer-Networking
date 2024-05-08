@@ -6,6 +6,10 @@
 [ext_resource type="AudioStream" uid="uid://c2lalega3101k" path="res://player/shoot/rifle_shoot.wav" id="4_0tb65"]
 [ext_resource type="FontFile" uid="uid://bfmsiq6efqoxt" path="res://font/Roboto-Regular.ttf" id="5_gadx7"]
 
+[sub_resource type="Theme" id="Theme_oo3xy"]
+default_font = ExtResource("5_gadx7")
+default_font_size = 0
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jebl7"]
 properties/0/path = NodePath("Node3D/Sway/Reload:rotation")
 properties/0/spawn = true
@@ -13,10 +17,6 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath("Node3D/Sway:position")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-
-[sub_resource type="Theme" id="Theme_oo3xy"]
-default_font = ExtResource("5_gadx7")
-default_font_size = 0
 
 [node name="Shoot" type="Node3D"]
 script = ExtResource("1_yqom3")
@@ -37,6 +37,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Weapon" type="MeshInstance3D" parent="Node3D/Sway/Reload"]
+unique_name_in_owner = true
 mesh = ExtResource("2_w1q1v")
 skeleton = NodePath("../../../..")
 
@@ -56,9 +57,6 @@ unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_jebl7")
-
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -69,6 +67,10 @@ theme = SubResource("Theme_oo3xy")
 [node name="Label" type="Label" parent="HUD"]
 modulate = Color(1, 0.901961, 0.501961, 1)
 custom_minimum_size = Vector2(4.885, 0)
+layout_mode = 0
 offset_right = 465.0
 offset_bottom = 229.0
 text = "TEXT"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_jebl7")

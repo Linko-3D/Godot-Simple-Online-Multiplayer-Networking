@@ -82,13 +82,9 @@ func play_sound(sound):
 	audio_node.play()
 
 func shoot_animation():
-	var tween = get_tree().create_tween()
-	var value = randf_range(0.8, 1)
-	tween.tween_property(%MuzzleFlash, "light_energy", value, 0)
-	tween.tween_property(%MuzzleFlash, "light_energy", 0, 0.02)
-	
-	
-	pass
+	var muzzle_flash_tween = get_tree().create_tween()
+	muzzle_flash_tween.tween_property(%MuzzleFlash, "light_energy", randf_range(0.8, 1), 0)
+	muzzle_flash_tween.tween_property(%MuzzleFlash, "light_energy", 0, 0.02)
 
 #func shoot_animation():
 	#randomize()
