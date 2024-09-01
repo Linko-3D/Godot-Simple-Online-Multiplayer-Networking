@@ -1,20 +1,60 @@
-[gd_scene load_steps=5 format=3 uid="uid://cs7kdpemhirwt"]
+[gd_scene load_steps=5 format=3 uid="uid://blkp40y57dwf2"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_qmj53"]
-[ext_resource type="PackedScene" uid="uid://cjnryc74hisxn" path="res://player/player.tscn" id="2_mm035"]
-[ext_resource type="PackedScene" uid="uid://clvp4cain5340" path="res://maps/map.tscn" id="3_y0mr2"]
-[ext_resource type="PackedScene" uid="uid://bw51fy723gv0q" path="res://chat.tscn" id="4_j7b2k"]
+[ext_resource type="Script" path="res://main.gd" id="1_rst6k"]
+[ext_resource type="PackedScene" uid="uid://kyjyh0j5vvx5" path="res://player/player.tscn" id="2_mkv17"]
+[ext_resource type="PackedScene" uid="uid://cboa7qsgpwkht" path="res://maps/map_1.tscn" id="3_yaipi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_28auc"]
+size = Vector2(200, 150)
 
 [node name="Main" type="Node"]
-script = ExtResource("1_qmj53")
-player = ExtResource("2_mm035")
-map = ExtResource("3_y0mr2")
+script = ExtResource("1_rst6k")
+player = ExtResource("2_mkv17")
+map = ExtResource("3_yaipi")
 
 [node name="MapInstance" type="Node" parent="."]
 unique_name_in_owner = true
 
-[node name="SpawnPosition" type="Node" parent="."]
+[node name="SpawnArea" type="Area2D" parent="."]
 unique_name_in_owner = true
+y_sort_enabled = true
+position = Vector2(200, 150)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea"]
+shape = SubResource("RectangleShape2D_28auc")
+
+[node name="Server" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 1, 0, 1)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PublicIP" type="Label" parent="Server"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Server"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(1, 1, 1, 1)
+border_width = 6.0
+editor_only = false
 
 [node name="Menu" type="PanelContainer" parent="."]
 unique_name_in_owner = true
@@ -23,13 +63,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -69.0
-offset_right = 75.0
-offset_bottom = 69.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Menu"]
@@ -41,155 +80,32 @@ theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer"]
 layout_mode = 2
-alignment = 1
 
 [node name="HostButton" type="Button" parent="Menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Host"
+text = "Start server"
 
-[node name="Gap" type="Label" parent="Menu/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Menu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="To" type="LineEdit" parent="Menu/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="To" type="LineEdit" parent="Menu/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 placeholder_text = "Enter server IP"
 
-[node name="JoinButton" type="Button" parent="Menu/MarginContainer/VBoxContainer"]
+[node name="JoinButton" type="Button" parent="Menu/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Join"
 
-[node name="Lobby" type="PanelContainer" parent="."]
-unique_name_in_owner = true
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -65.0
-offset_right = 75.0
-offset_bottom = 65.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="MarginContainer" type="MarginContainer" parent="Lobby"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Lobby/MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="Lobby/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Lobby"
-horizontal_alignment = 1
-
-[node name="SetUsername" type="LineEdit" parent="Lobby/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Anonymous"
-max_length = 13
-
-[node name="EnterButton" type="Button" parent="Lobby/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Enter game"
-
-[node name="ReturnButton" type="Button" parent="Lobby/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Return"
-
-[node name="SpectateButton" type="Button" parent="Lobby/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Spectate"
-
-[node name="Gap2" type="Label" parent="Lobby/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="QuitButton" type="Button" parent="Lobby/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Quit game"
-
-[node name="Admin" type="PanelContainer" parent="."]
-unique_name_in_owner = true
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -79.0
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 8
-
-[node name="MarginContainer" type="MarginContainer" parent="Admin"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Admin/MarginContainer"]
-layout_mode = 2
-
-[node name="DisplayPublicIP" type="Label" parent="Admin/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="Admin/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Leaderboard" type="PanelContainer" parent="."]
-unique_name_in_owner = true
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -179.0
-offset_top = -94.0
-offset_right = 179.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Leaderboard"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Leaderboard/MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Leaderboard/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Leaderboard/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Player"
-
-[node name="Chat" parent="." instance=ExtResource("4_j7b2k")]
-unique_name_in_owner = true
-
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player/player.tscn")
-spawn_path = NodePath("../SpawnPosition")
+spawn_path = NodePath("../SpawnArea")
 
 [connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
-[connection signal="text_submitted" from="Menu/MarginContainer/VBoxContainer/To" to="." method="_on_to_text_submitted"]
-[connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
-[connection signal="text_submitted" from="Lobby/MarginContainer/VBoxContainer/SetUsername" to="." method="_on_set_username_text_submitted"]
-[connection signal="pressed" from="Lobby/MarginContainer/VBoxContainer/EnterButton" to="." method="_on_enter_button_pressed"]
-[connection signal="pressed" from="Lobby/MarginContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="Lobby/MarginContainer/VBoxContainer/SpectateButton" to="." method="_on_spectate_button_pressed"]
-[connection signal="pressed" from="Lobby/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="text_submitted" from="Menu/MarginContainer/VBoxContainer/HBoxContainer/To" to="." method="_on_to_text_submitted"]
+[connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/HBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
