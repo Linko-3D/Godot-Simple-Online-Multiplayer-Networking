@@ -5,7 +5,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 	%DisplayAuthority.visible = is_multiplayer_authority()
 
