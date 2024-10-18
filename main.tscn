@@ -102,6 +102,34 @@ placeholder_text = "Enter server IP"
 layout_mode = 2
 text = "Join"
 
+[node name="Lobby" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = -20.5
+offset_right = 53.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Lobby"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Lobby/MarginContainer"]
+layout_mode = 2
+
+[node name="EnterButton" type="Button" parent="Lobby/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Enter game"
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player/player.tscn")
 spawn_path = NodePath("../SpawnArea")
@@ -109,3 +137,4 @@ spawn_path = NodePath("../SpawnArea")
 [connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="text_submitted" from="Menu/MarginContainer/VBoxContainer/HBoxContainer/To" to="." method="_on_to_text_submitted"]
 [connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/HBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="Lobby/MarginContainer/VBoxContainer/EnterButton" to="." method="_on_enter_button_pressed"]

@@ -6,6 +6,8 @@ extends Node
 
 
 func _ready() -> void:
+	%Lobby.hide()
+	
 	var upnp = UPNP.new()
 	upnp.discover()
 	upnp.add_port_mapping(9999)
@@ -40,7 +42,9 @@ func _on_to_text_submitted(new_text: String) -> void:
 func load_game():
 	%Menu.hide()
 	%MapInstance.add_child(map.instantiate())
-	add_player.rpc(multiplayer.get_unique_id())
+
+	if not multiplayer.is_server():
+		%Lobby.show()
 
 
 func connection_lost():
@@ -61,3 +65,8 @@ func add_player(id):
 func remove_player(id):
 	if %SpawnArea.get_node(str(id)):
 		%SpawnArea.get_node(str(id)).queue_free()
+
+
+func _on_enter_button_pressed() -> void:
+	add_player.rpc_id(1, multiplayer.get_unique_id())
+	%Lobby.hide()
