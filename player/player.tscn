@@ -1,31 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://kyjyh0j5vvx5"]
+[gd_scene load_steps=6 format=3 uid="uid://dtew7y30rstly"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_m55yk"]
-[ext_resource type="Texture2D" uid="uid://iyjnrupf54lv" path="res://icon.svg" id="1_qmb3f"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fcbiy"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3b1fe"]
+height = 1.85
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_weray"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_f121n"]
+height = 1.85
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ie0lb"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_30mr6"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Camera3D:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_m55yk")
 
-[node name="DisplayAuthority" type="ColorRect" parent="."]
-unique_name_in_owner = true
-offset_left = -70.0
-offset_top = -70.0
-offset_right = 70.0
-offset_bottom = 70.0
-color = Color(0, 1, 0, 1)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_3b1fe")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_qmb3f")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_f121n")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+current = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.5)
+mesh = SubResource("CylinderMesh_ie0lb")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_fcbiy")
-
-[node name="MultiplayerSynchronizer2" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_weray")
+replication_config = SubResource("SceneReplicationConfig_30mr6")

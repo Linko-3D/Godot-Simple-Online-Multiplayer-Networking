@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://kyjyh0j5vvx5"]
+
+[ext_resource type="Script" path="res://player/player2D.gd" id="1_m55yk"]
+[ext_resource type="Texture2D" uid="uid://iyjnrupf54lv" path="res://icon.svg" id="1_qmb3f"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fcbiy"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_weray"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_m55yk")
+
+[node name="DisplayAuthority" type="ColorRect" parent="."]
+unique_name_in_owner = true
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 70.0
+color = Color(0, 1, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qmb3f")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_fcbiy")
+
+[node name="MultiplayerSynchronizer2" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_weray")

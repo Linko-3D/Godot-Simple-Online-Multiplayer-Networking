@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://blkp40y57dwf2"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_rst6k"]
-[ext_resource type="PackedScene" uid="uid://kyjyh0j5vvx5" path="res://player/player.tscn" id="2_mkv17"]
+[ext_resource type="PackedScene" uid="uid://dtew7y30rstly" path="res://player/player.tscn" id="2_mkv17"]
 [ext_resource type="PackedScene" uid="uid://cboa7qsgpwkht" path="res://maps/map_1.tscn" id="3_yaipi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28auc"]
@@ -63,12 +63,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -96.0
+offset_top = -55.0
+offset_right = 96.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 4
 metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Menu"]
@@ -115,6 +116,8 @@ offset_right = 53.5
 offset_bottom = 20.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="Lobby"]
 layout_mode = 2
@@ -130,6 +133,18 @@ layout_mode = 2
 layout_mode = 2
 text = "Enter game"
 
+[node name="SpectateButton" type="Button" parent="Lobby/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Spectate"
+
+[node name="HSeparator" type="HSeparator" parent="Lobby/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="Lobby/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player/player.tscn")
 spawn_path = NodePath("../SpawnArea")
@@ -138,3 +153,4 @@ spawn_path = NodePath("../SpawnArea")
 [connection signal="text_submitted" from="Menu/MarginContainer/VBoxContainer/HBoxContainer/To" to="." method="_on_to_text_submitted"]
 [connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/HBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="Lobby/MarginContainer/VBoxContainer/EnterButton" to="." method="_on_enter_button_pressed"]
+[connection signal="pressed" from="Lobby/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

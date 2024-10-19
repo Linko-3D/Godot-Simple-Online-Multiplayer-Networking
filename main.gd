@@ -70,3 +70,7 @@ func remove_player(id):
 func _on_enter_button_pressed() -> void:
 	add_player.rpc_id(1, multiplayer.get_unique_id())
 	%Lobby.hide()
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
