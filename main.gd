@@ -4,6 +4,8 @@ extends Node
 @export var player : PackedScene
 @export var map : PackedScene
 
+var spawned = false
+
 
 func _ready() -> void:
 	%Lobby.hide()
@@ -12,6 +14,13 @@ func _ready() -> void:
 	upnp.discover()
 	upnp.add_port_mapping(9999)
 	%PublicIP.text = upnp.query_external_address()
+
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_cancel") and not multiplayer.is_server():
+		%Lobby.show()
+		%EnterButton.visible = !spawned
+		%ResumeButton.visible = spawned
 
 
 func _on_host_button_pressed() -> void:
@@ -45,6 +54,9 @@ func load_game():
 
 	if not multiplayer.is_server():
 		%Lobby.show()
+	
+	%EnterButton.visible = !spawned
+	%ResumeButton.visible = spawned
 
 
 func connection_lost():
@@ -70,7 +82,20 @@ func remove_player(id):
 func _on_enter_button_pressed() -> void:
 	add_player.rpc_id(1, multiplayer.get_unique_id())
 	%Lobby.hide()
+	spawned = true
 
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_resume_button_pressed() -> void:
+	%Lobby.hide()
+
+
+func _on_spectate_button_pressed() -> void:
+	remove_player.rpc_id(1, multiplayer.get_unique_id())
+	spawned = false
+	%Lobby.hide()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
