@@ -13,7 +13,7 @@ height = 1.85
 [sub_resource type="CylinderMesh" id="CylinderMesh_ie0lb"]
 top_radius = 0.05
 bottom_radius = 0.05
-height = 0.5
+height = 0.6
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_30mr6"]
 properties/0/path = NodePath(".:position")
@@ -46,7 +46,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 current = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.3)
 mesh = SubResource("CylinderMesh_ie0lb")
 
 [node name="Flashlight" type="SpotLight3D" parent="Camera3D"]
