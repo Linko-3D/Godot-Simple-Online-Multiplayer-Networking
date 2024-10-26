@@ -3,15 +3,17 @@
 [ext_resource type="Script" path="res://player/player.gd" id="1_m55yk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3b1fe"]
+radius = 0.4
 height = 1.85
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_f121n"]
+radius = 0.4
 height = 1.85
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ie0lb"]
-top_radius = 0.1
-bottom_radius = 0.1
-height = 1.0
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.5
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_30mr6"]
 properties/0/path = NodePath(".:position")
