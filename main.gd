@@ -98,4 +98,3 @@ func _on_spectate_button_pressed() -> void:
 	spawned = false
 	%Lobby.hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
