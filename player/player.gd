@@ -46,18 +46,17 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 			velocity.y = jump_velocity
 
-		$CollisionShape3D.shape.height = 1.85
-		$MeshInstance3D.mesh.height = 1.85
+		$CollisionShape3D.shape.height = lerp($CollisionShape3D.shape.height, 1.85, 0.1)
 
 		if Input.is_action_pressed("crouch"):
 			speed = 1.8
-			$CollisionShape3D.shape.height = 1.38
-			$MeshInstance3D.mesh.height = 1.38
+			$CollisionShape3D.shape.height = lerp($CollisionShape3D.shape.height, 1.38, 0.1)
 		elif Input.is_action_pressed("walk"):
 			speed = 3
 		else:
 			speed = 5.5
 
+		$MeshInstance3D.mesh.height = $CollisionShape3D.shape.height
 		crouch.rpc($CollisionShape3D.shape.height)
 
 		# Get the input direction and handle the movement/deceleration.
@@ -75,13 +74,6 @@ func _physics_process(delta: float) -> void:
 		velocity.z = 0
 
 	move_and_slide()
-
-	if Input.is_action_just_pressed("add"):
-		jump_velocity += 0.1
-		print(jump_velocity)
-	if Input.is_action_just_pressed("remove"):
-		jump_velocity -= 0.1
-		print(jump_velocity)
 
 	if Input.is_action_just_pressed("flashlight"):
 		%Flashlight.visible = !%Flashlight.visible

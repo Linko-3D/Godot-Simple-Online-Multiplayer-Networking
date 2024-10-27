@@ -141,6 +141,7 @@ layout_mode = 2
 text = "Resume game"
 
 [node name="SpectateButton" type="Button" parent="Lobby/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Spectate"
 
