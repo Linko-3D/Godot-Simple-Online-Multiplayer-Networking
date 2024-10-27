@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_m55yk"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3b1fe"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l4w7r"]
 radius = 0.4
 height = 1.85
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_f121n"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_potbx"]
 radius = 0.4
 height = 1.85
 
@@ -31,11 +31,11 @@ script = ExtResource("1_m55yk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_3b1fe")
+shape = SubResource("CapsuleShape3D_l4w7r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_f121n")
+mesh = SubResource("CapsuleMesh_potbx")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 unique_name_in_owner = true
