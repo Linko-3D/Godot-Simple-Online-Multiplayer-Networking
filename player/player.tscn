@@ -3,10 +3,12 @@
 [ext_resource type="Script" path="res://player/player.gd" id="1_m55yk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l4w7r"]
+resource_local_to_scene = true
 radius = 0.4
 height = 1.85
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_potbx"]
+resource_local_to_scene = true
 radius = 0.4
 height = 1.85
 
@@ -49,8 +51,7 @@ mesh = SubResource("CylinderMesh_ie0lb")
 [node name="Flashlight" type="SpotLight3D" parent="Camera3D"]
 unique_name_in_owner = true
 visible = false
-light_energy = 10.0
-light_indirect_energy = 10.0
+shadow_enabled = true
 spot_range = 10.0
 spot_angle = 30.0
 
