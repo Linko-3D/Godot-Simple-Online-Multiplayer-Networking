@@ -10,10 +10,6 @@ func _enter_tree() -> void:
 
 	%Camera3D.current = is_multiplayer_authority()
 
-	if not is_multiplayer_authority(): return
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-
 func _input(event):
 	if not is_multiplayer_authority(): return
 
@@ -28,14 +24,6 @@ func _input(event):
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
-
-	if Input.is_action_just_pressed("shoot"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-	if Input.is_action_just_pressed("ui_cancel"):
-		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-			get_tree().quit()
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 	# Add the gravity.
 	if not is_on_floor():

@@ -16,6 +16,13 @@ func _ready() -> void:
 	%PublicIP.text = upnp.query_external_address()
 
 
+func _process(delta: float) -> void:
+	if %Menu.visible or %Lobby.visible or multiplayer.is_server():
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel") and not multiplayer.is_server():
 		%Lobby.show()
