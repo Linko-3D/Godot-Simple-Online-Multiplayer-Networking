@@ -85,7 +85,8 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("flashlight"):
 		%Flashlight.visible = !%Flashlight.visible
-		flashlight.rpc(%Flashlight.visible)
+
+	flashlight.rpc(%Flashlight.visible)
 
 
 @rpc("any_peer")
