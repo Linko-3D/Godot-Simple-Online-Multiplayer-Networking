@@ -29,6 +29,7 @@ properties/2/spawn = true
 properties/2/replication_mode = 1
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_m55yk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
