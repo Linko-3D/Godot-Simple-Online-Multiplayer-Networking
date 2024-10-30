@@ -9,6 +9,7 @@ var spawned = false
 
 func _ready() -> void:
 	%Lobby.hide()
+	%Server.hide()
 	
 	var upnp = UPNP.new()
 	upnp.discover()

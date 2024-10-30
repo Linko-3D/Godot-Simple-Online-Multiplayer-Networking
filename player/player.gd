@@ -9,6 +9,8 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 
 	%Camera3D.current = is_multiplayer_authority()
+	%Crosshair.visible = is_multiplayer_authority()
+
 
 func _input(event):
 	if not is_multiplayer_authority(): return

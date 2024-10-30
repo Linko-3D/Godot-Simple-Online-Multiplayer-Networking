@@ -26,7 +26,6 @@ shape = SubResource("RectangleShape2D_28auc")
 
 [node name="Server" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 modulate = Color(0, 1, 0, 1)
 layout_mode = 3
 anchors_preset = 15
@@ -34,16 +33,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="PublicIP" type="Label" parent="Server"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 23.0
-grow_horizontal = 2
-horizontal_alignment = 1
-vertical_alignment = 2
 
 [node name="ReferenceRect" type="ReferenceRect" parent="Server"]
 layout_mode = 1
@@ -55,6 +44,32 @@ grow_vertical = 2
 border_color = Color(1, 1, 1, 1)
 border_width = 6.0
 editor_only = false
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="Server"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0, 0, 0, 1)
+border_width = 2.0
+editor_only = false
+
+[node name="PublicIP" type="Label" parent="Server"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 5.0
+offset_bottom = 28.0
+grow_horizontal = 2
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="Menu" type="PanelContainer" parent="."]
 unique_name_in_owner = true
