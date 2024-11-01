@@ -63,6 +63,18 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		velocity.z = 0
 
+	%Line1.position.y = lerp(%Line1.position.y, -velocity.length() * 22.9, 20 * delta)
+	%Line1.position.y = clamp(%Line1.position.y, -126, 0)
+
+	%Line2.position.x = lerp(%Line2.position.x, velocity.length() * 22.9, 20 * delta)
+	%Line2.position.x = clamp(%Line2.position.x, 0, 126)
+
+	%Line3.position.y = lerp(%Line3.position.y, velocity.length() * 22.9, 20 * delta)
+	%Line3.position.y = clamp(%Line3.position.y, 0, 126)
+
+	%Line4.position.x = lerp(%Line4.position.x, -velocity.length() * 22.9, 20 * delta)
+	%Line4.position.x = clamp(%Line4.position.x, -126, 0)
+
 	move_and_slide()
 
 	if Input.is_action_just_pressed("flashlight"):
