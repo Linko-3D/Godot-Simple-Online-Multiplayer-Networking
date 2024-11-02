@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cboa7qsgpwkht"]
+[gd_scene load_steps=6 format=3 uid="uid://cboa7qsgpwkht"]
+
+[ext_resource type="Script" path="res://maps/map_1.gd" id="1_jnqnv"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_12xnb"]
 
@@ -16,21 +18,24 @@ glow_enabled = true
 albedo_color = Color(0.5, 0.5, 0.5, 1)
 
 [node name="map1" type="Node3D"]
+script = ExtResource("1_jnqnv")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ut8ts")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 7, 0)
 light_energy = 2.0
 light_indirect_energy = 2.0
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.02807)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 7.02807)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 use_collision = true
 size = Vector3(20, 0, 20)
 material = SubResource("StandardMaterial3D_us1y4")
+
+[node name="spawn" type="Node3D" parent="." groups=["spawn_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

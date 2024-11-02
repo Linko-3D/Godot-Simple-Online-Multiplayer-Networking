@@ -11,6 +11,8 @@ func _enter_tree() -> void:
 	%Camera3D.current = is_multiplayer_authority()
 	%Crosshair.visible = is_multiplayer_authority()
 
+	position = get_tree().get_nodes_in_group("spawn_point")[0].position
+
 
 func _input(event):
 	if not is_multiplayer_authority(): return

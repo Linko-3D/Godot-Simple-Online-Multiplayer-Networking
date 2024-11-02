@@ -1,28 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://blkp40y57dwf2"]
+[gd_scene load_steps=4 format=3 uid="uid://blkp40y57dwf2"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_rst6k"]
 [ext_resource type="PackedScene" uid="uid://dtew7y30rstly" path="res://player/player.tscn" id="2_mkv17"]
 [ext_resource type="PackedScene" uid="uid://cboa7qsgpwkht" path="res://maps/map_1.tscn" id="3_yaipi"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_28auc"]
-size = Vector2(200, 150)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_rst6k")
 player = ExtResource("2_mkv17")
 map = ExtResource("3_yaipi")
 
+[node name="Players" type="Node" parent="."]
+unique_name_in_owner = true
+
 [node name="MapInstance" type="Node" parent="."]
 unique_name_in_owner = true
-
-[node name="SpawnArea" type="Area2D" parent="."]
-unique_name_in_owner = true
-y_sort_enabled = true
-position = Vector2(200, 150)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea"]
-shape = SubResource("RectangleShape2D_28auc")
 
 [node name="Server" type="Control" parent="."]
 unique_name_in_owner = true
@@ -170,7 +161,7 @@ text = "Quit"
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player/player.tscn")
-spawn_path = NodePath("../SpawnArea")
+spawn_path = NodePath("../Players")
 
 [connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="text_submitted" from="Menu/MarginContainer/VBoxContainer/HBoxContainer/To" to="." method="_on_to_text_submitted"]

@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel") and not multiplayer.is_server():
-		%Lobby.show()
+		%Lobby.visible = !%Lobby.visible
 		%EnterButton.visible = !spawned
 		%ResumeButton.visible = spawned
 
@@ -60,6 +60,7 @@ func load_game():
 	%Menu.hide()
 	%MapInstance.add_child(map.instantiate())
 
+
 	if not multiplayer.is_server():
 		%Lobby.show()
 	
@@ -78,13 +79,14 @@ func connection_lost():
 func add_player(id):
 	var player_instance = player.instantiate()
 	player_instance.name = str(id)
-	%SpawnArea.add_child(player_instance)
+
+	%Players.add_child(player_instance)
 
 
 @rpc("any_peer")
 func remove_player(id):
-	if %SpawnArea.get_node(str(id)):
-		%SpawnArea.get_node(str(id)).queue_free()
+	if %Players.get_node(str(id)):
+		%Players.get_node(str(id)).queue_free()
 
 
 func _on_enter_button_pressed() -> void:
