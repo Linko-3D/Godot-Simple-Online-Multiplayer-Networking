@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu7e1u0gi27cf"]
+
+[ext_resource type="Script" path="res://spec_camera_3d.gd" id="1_2iof6"]
+
+[node name="SpecCamera3D" type="Camera3D"]
+script = ExtResource("1_2iof6")

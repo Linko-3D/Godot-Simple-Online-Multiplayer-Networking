@@ -2,6 +2,7 @@ extends Node
 
 
 @export var player : PackedScene
+@export var spec_cam : PackedScene
 @export var map : PackedScene
 
 var spawned = false
@@ -94,6 +95,9 @@ func _on_enter_button_pressed() -> void:
 	%Lobby.hide()
 	spawned = true
 
+	if get_node("SpecCamera3D"):
+		get_node("SpecCamera3D").queue_free()
+
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
@@ -108,3 +112,8 @@ func _on_spectate_button_pressed() -> void:
 	spawned = false
 	%Lobby.hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	if not get_node("SpecCamera3D"):
+		var spec_cam_instance = spec_cam.instantiate()
+		spec_cam_instance.current = true
+		add_child(spec_cam_instance)
