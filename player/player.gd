@@ -28,7 +28,7 @@ func _input(event):
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): return
-
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * 2 * delta
@@ -39,16 +39,19 @@ func _physics_process(delta: float) -> void:
 			velocity.y = jump_velocity
 
 		$CollisionShape3D.shape.height = lerp($CollisionShape3D.shape.height, 1.85, 10 * delta)
+		%Camera3D.position.y = lerp(%Camera3D.position.y, 1.6, 10 * delta)
 
 		if Input.is_action_pressed("crouch"):
 			speed = 1.8
 			$CollisionShape3D.shape.height = lerp($CollisionShape3D.shape.height, 1.38, 10 * delta)
+			%Camera3D.position.y = lerp(%Camera3D.position.y, 1.455, 10 * delta)
 		elif Input.is_action_pressed("walk"):
 			speed = 3
 		else:
 			speed = 5.5
 
 		$MeshInstance3D.mesh.height = $CollisionShape3D.shape.height
+
 		crouch.rpc($CollisionShape3D.shape.height)
 
 		# Get the input direction and handle the movement/deceleration.
