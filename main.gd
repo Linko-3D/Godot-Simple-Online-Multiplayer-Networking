@@ -115,5 +115,4 @@ func _on_spectate_button_pressed() -> void:
 
 	if not get_node("SpecCamera3D"):
 		var spec_cam_instance = spec_cam.instantiate()
-		spec_cam_instance.current = true
 		add_child(spec_cam_instance)

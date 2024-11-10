@@ -1,12 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://dfrronoscpayy"]
 
-[sub_resource type="GDScript" id="GDScript_3s1qo"]
-script/source = "extends Camera3D
+[ext_resource type="Script" path="res://spec_camera_3d.gd" id="1_4rcn6"]
 
+[node name="SpecCamera3D" type="Node3D"]
+script = ExtResource("1_4rcn6")
 
-func _ready() -> void:
-	position = get_tree().get_nodes_in_group(\"spawn_point\")[0].position
-"
-
-[node name="SpecCamera3D" type="Camera3D"]
-script = SubResource("GDScript_3s1qo")
+[node name="Camera3D" type="Camera3D" parent="."]
+unique_name_in_owner = true
+current = true
