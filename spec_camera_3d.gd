@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-var speed = 5.5 * 4
+var speed = 5.5
 
 
 func _ready() -> void:
@@ -17,8 +17,14 @@ func _input(event):
 		%Camera3D.rotate_x(-event.relative.y / 2000)
 		%Camera3D.rotation.x = clamp( %Camera3D.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
 
-
 func _process(delta: float) -> void:
+	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: return
+
+	if Input.is_action_pressed("walk"):
+		speed = 5.5 * 6
+	else:
+		speed = 5.5 * 3
+	
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
