@@ -3,6 +3,11 @@ extends Camera3D
 
 var speed = 5.5 * 2
 
+var mouse_sensitivity = Vector2(0.2, 0.2)
+
+var rotation_x = 0.0
+var rotation_y = 0.0
+
 
 func _ready() -> void:
 	position = get_tree().get_nodes_in_group("spawn_point")[0].position
@@ -12,11 +17,12 @@ func _input(event):
 	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: return
 
 	if event is InputEventMouseMotion:
-		rotate_y(-event.relative.x / 2000)
+		rotation_y -= event.relative.x * mouse_sensitivity.x
+		rotation_x -= event.relative.y * mouse_sensitivity.y
 
-		rotate_x(-event.relative.y / 2000)
-		rotation.x = clamp( rotation.x, deg_to_rad(-90), deg_to_rad(90) )
-		rotation.z = 0
+		rotation_x = clamp(rotation_x, -90, 90)
+
+		rotation_degrees = Vector3(rotation_x, rotation_y, 0)
 
 
 func _process(delta: float) -> void:
