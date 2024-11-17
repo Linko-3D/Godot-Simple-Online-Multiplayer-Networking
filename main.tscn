@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://blkp40y57dwf2"]
+[gd_scene load_steps=6 format=3 uid="uid://blkp40y57dwf2"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_rst6k"]
 [ext_resource type="PackedScene" uid="uid://dtew7y30rstly" path="res://player/player.tscn" id="2_mkv17"]
 [ext_resource type="PackedScene" uid="uid://dfrronoscpayy" path="res://spec_camera_3d.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cboa7qsgpwkht" path="res://maps/map_1.tscn" id="3_yaipi"]
+[ext_resource type="PackedScene" uid="uid://b1tvifgfijach" path="res://chat.tscn" id="5_512yb"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_rst6k")
@@ -71,10 +72,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -96.0
-offset_top = -55.0
-offset_right = 96.0
-offset_bottom = 55.0
+offset_left = -99.0
+offset_top = -58.0
+offset_right = 99.0
+offset_bottom = 58.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
@@ -82,10 +83,10 @@ metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Menu"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer"]
 layout_mode = 2
@@ -119,9 +120,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -96.0
-offset_top = -72.5
+offset_top = -75.5
 offset_right = 96.0
-offset_bottom = 72.5
+offset_bottom = 75.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -129,10 +130,10 @@ size_flags_vertical = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="Lobby"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Lobby/MarginContainer"]
 layout_mode = 2
@@ -160,6 +161,8 @@ layout_mode = 2
 [node name="QuitButton" type="Button" parent="Lobby/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="Chat" parent="." instance=ExtResource("5_512yb")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player/player.tscn")

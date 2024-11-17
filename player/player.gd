@@ -21,7 +21,6 @@ func _input(event):
 
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x / 2000)
-
 		%Camera3D.rotate_x(-event.relative.y / 2000)
 		%Camera3D.rotation.x = clamp( %Camera3D.rotation.x, deg_to_rad(-90), deg_to_rad(90) )
 

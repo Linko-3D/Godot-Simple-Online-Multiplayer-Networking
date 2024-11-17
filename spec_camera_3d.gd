@@ -19,11 +19,9 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		rotation_y -= event.relative.x * mouse_sensitivity.x
 		rotation_x -= event.relative.y * mouse_sensitivity.y
-
 		rotation_x = clamp(rotation_x, -90, 90)
 
 		rotation_degrees = Vector3(rotation_x, rotation_y, 0)
-
 
 func _process(delta: float) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: return
